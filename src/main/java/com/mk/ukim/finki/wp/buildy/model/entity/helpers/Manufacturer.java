@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 @Entity
 public class Manufacturer extends BaseEntity {
 
-    public String name;
+    private String name;
 
-    public String description;
+    private String description;
 
     public String getName() {
         return name;
