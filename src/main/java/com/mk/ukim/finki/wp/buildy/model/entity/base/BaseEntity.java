@@ -11,6 +11,7 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
+    @Column(columnDefinition = "UNIQUEIDENTIFIER")
     protected UUID uid;
 
     @Version
