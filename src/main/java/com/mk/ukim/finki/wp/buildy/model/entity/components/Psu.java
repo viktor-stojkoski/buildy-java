@@ -3,10 +3,9 @@ package com.mk.ukim.finki.wp.buildy.model.entity.components;
 import com.mk.ukim.finki.wp.buildy.model.entity.base.BaseEntity;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Manufacturer;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.PsuEfficiency;
+import com.mk.ukim.finki.wp.buildy.model.enumeration.ModularityType;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Psu extends BaseEntity {
@@ -17,9 +16,10 @@ public class Psu extends BaseEntity {
 
     private String imageUrl;
 
-    private boolean isModular;
-
     private int capacity;
+
+    @Enumerated(EnumType.STRING)
+    private ModularityType modularityType;
 
     @ManyToOne
     @JoinColumn(name = "manufacturer_fk")
@@ -53,12 +53,12 @@ public class Psu extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-    public boolean isModular() {
-        return isModular;
+    public ModularityType getModularityType() {
+        return modularityType;
     }
 
-    public void setModular(boolean modular) {
-        isModular = modular;
+    public void setModularityType(ModularityType modularityType) {
+        this.modularityType = modularityType;
     }
 
     public int getCapacity() {
