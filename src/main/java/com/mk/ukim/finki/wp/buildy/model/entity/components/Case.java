@@ -7,6 +7,7 @@ import com.mk.ukim.finki.wp.buildy.model.enumeration.MotherboardType;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "pc_case")
 public class Case extends BaseEntity {
 
     private String name;
@@ -15,7 +16,11 @@ public class Case extends BaseEntity {
 
     private String imageUrl;
 
-    private String dimensions;
+    private int width;
+
+    private int height;
+
+    private int depth;
 
     private int numberOfFansSupported;
 
@@ -50,12 +55,28 @@ public class Case extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-    public String getDimensions() {
-        return dimensions;
+    public int getHeight() {
+        return height;
     }
 
-    public void setDimensions(String dimensions) {
-        this.dimensions = dimensions;
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
     }
 
     public int getNumberOfFansSupported() {
