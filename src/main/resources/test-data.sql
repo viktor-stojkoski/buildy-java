@@ -16,7 +16,8 @@ BEGIN
                      (7, N'b2c1e015-6085-4cf1-86e8-5ea5d585b8ee', 1, NULL, N'Z370'),
                      (8, N'74846613-695b-4717-af41-44b2c19b6c85', 1, NULL, N'Z390'),
                      (9, N'9c865368-5e47-43aa-a4c3-c3d8b7e1ffda', 1, NULL, N'H370'),
-                     (10, N'7e577732-1757-4fa2-bdf1-f651470943fb', 1, NULL, N'B360')
+                     (10, N'7e577732-1757-4fa2-bdf1-f651470943fb', 1, NULL, N'B360'),
+                     (11, N'4efbc799-616e-48b4-8d43-a3ff486a9579', 1, NULL, N'Z270')
                  )
                      AS temp ([id], [uid], [version], [deleted_on], [name])
         ) AS S

@@ -25,16 +25,16 @@ public class Motherboard extends BaseEntity {
     private MotherboardType motherboardType;
 
     @ManyToOne
-    @JoinColumn(name = "manufacturer_fk")
-    private Manufacturer manufacturer;
-
-    @ManyToOne
     @JoinColumn(name = "socket_fk")
     private Socket socket;
 
     @ManyToOne
     @JoinColumn(name = "chipset_fk")
     private Chipset chipset;
+
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_fk")
+    private Manufacturer manufacturer;
 
     public String getName() {
         return name;
