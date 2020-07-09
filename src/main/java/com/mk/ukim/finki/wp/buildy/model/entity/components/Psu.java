@@ -22,12 +22,12 @@ public class Psu extends BaseEntity {
     private ModularityType modularityType;
 
     @ManyToOne
-    @JoinColumn(name = "manufacturer_fk")
-    private Manufacturer manufacturer;
-
-    @ManyToOne
     @JoinColumn(name = "psu_efficiency_fk")
     private PsuEfficiency psuEfficiency;
+
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_fk")
+    private Manufacturer manufacturer;
 
     public String getName() {
         return name;
