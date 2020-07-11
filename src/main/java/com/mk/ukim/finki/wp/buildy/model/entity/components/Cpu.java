@@ -1,8 +1,8 @@
 package com.mk.ukim.finki.wp.buildy.model.entity.components;
 
 import com.mk.ukim.finki.wp.buildy.model.entity.base.BaseEntity;
-import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Chipset;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Manufacturer;
+import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Socket;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -32,8 +32,8 @@ public class Cpu extends BaseEntity {
     private Manufacturer manufacturer;
 
     @ManyToOne
-    @JoinColumn(name = "chipset_fk")
-    private Chipset chipset;
+    @JoinColumn(name = "socket_fk")
+    private Socket socket;
 
     public String getName() {
         return name;
@@ -107,11 +107,11 @@ public class Cpu extends BaseEntity {
         this.manufacturer = manufacturer;
     }
 
-    public Chipset getChipset() {
-        return chipset;
+    public Socket getSocket() {
+        return socket;
     }
 
-    public void setChipset(Chipset chipset) {
-        this.chipset = chipset;
+    public void setSocket(Socket socket) {
+        this.socket = socket;
     }
 }

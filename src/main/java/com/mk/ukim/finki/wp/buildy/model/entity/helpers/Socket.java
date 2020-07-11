@@ -1,6 +1,7 @@
 package com.mk.ukim.finki.wp.buildy.model.entity.helpers;
 
 import com.mk.ukim.finki.wp.buildy.model.entity.base.BaseEntity;
+import com.mk.ukim.finki.wp.buildy.model.entity.components.Cpu;
 import com.mk.ukim.finki.wp.buildy.model.entity.components.Motherboard;
 
 import javax.persistence.Entity;
@@ -14,6 +15,9 @@ public class Socket extends BaseEntity {
 
     @OneToMany(mappedBy = "socket")
     private List<Motherboard> motherboards;
+
+    @OneToMany(mappedBy = "socket")
+    private List<Cpu> cpus;
 
     public String getName() {
         return name;
@@ -29,5 +33,13 @@ public class Socket extends BaseEntity {
 
     public void setMotherboards(List<Motherboard> motherboards) {
         this.motherboards = motherboards;
+    }
+
+    public List<Cpu> getCpus() {
+        return cpus;
+    }
+
+    public void setCpus(List<Cpu> cpus) {
+        this.cpus = cpus;
     }
 }
