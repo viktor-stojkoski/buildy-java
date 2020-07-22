@@ -64,7 +64,8 @@ BEGIN
                      (17, N'b2465c08-a5d0-458c-8ea8-494870808a8a', 1, NULL, N'A-Data', N'ADATA Technology Co., Ltd. (Chinese: 威剛科技股份有限公司) is a publicly listed (3260:TAI) fabless[1] Taiwanese memory and storage manufacturer, founded in May 2001 by Simon Chen (Traditional Chinese: 陳立白). Its main product line consists of DRAM modules, USB Flash drives, hard disk drives, solid state drives, memory cards and mobile accessories. ADATA is also expanding into new areas, including robotics and electric powertrain systems. In addition to its main ADATA brand, the company also sells PC gaming hardware and accessories under its XPG brand.'),
                      (18, N'4ce502f6-932c-47be-81ab-0d4599ea3a7f', 1, NULL, N'Asus', N'ASUS is a Taiwan-based, multinational computer hardware and consumer electronics company that was established in 1989. Dedicated to creating products for today''s and tomorrow''s smart life, ASUS is the world''s No. 1 motherboard and gaming brand as well as a top-three consumer notebook vendor.'),
                      (19, N'f649a3e4-561a-41dd-9d54-26d5d17cd347', 1, NULL, N'Corsair', N'Corsair Components, Inc. designs, manufactures, and supplies computer peripherals. The Company offers memory modules, flash drives, power supply units, cooling systems, gaming headsets, speakers, gaming keyboards, mice, headsets, mouse mats, and wireless drives.'),
-                     (20, N'43fc4792-da9b-449f-bb6d-7872b2ce5427', 1, NULL, N'Noctua',  N'Noctua is an Austrian computer hardware manufacturer of CPU coolers and computer fans primarily for the enthusiast market. The company was founded in 2005 and is a joint venture between Austrian company Rascom Computer Distribution GmbH and the Taiwanese Kolink International Corporation.')
+                     (20, N'43fc4792-da9b-449f-bb6d-7872b2ce5427', 1, NULL, N'Noctua',  N'Noctua is an Austrian computer hardware manufacturer of CPU coolers and computer fans primarily for the enthusiast market. The company was founded in 2005 and is a joint venture between Austrian company Rascom Computer Distribution GmbH and the Taiwanese Kolink International Corporation.'),
+                     (21, N'e1f22e31-eb96-4038-a737-cba0663d4501', 1, NULL, N'be quiet!',  N'be quiet! is a brand owned by the German company Listan GmbH, which manufactures power supply units, CPU coolers, computer cases and case fans. The main target groups for products in the be quiet! range are PC enthusiasts and gamers as well as smaller and larger PC integrators.')
                  )
                      AS temp ([id], [uid], [version], [deleted_on], [name], [description])
         ) AS S
@@ -228,7 +229,8 @@ BEGIN
                      (12, N'cfd2c327-534f-4c1e-9e2f-4f1c9e088df6', 1, NULL, N'ML120 PRO', 28, N'http://ecx.images-amazon.com/images/I/51Iktd3q0jL.jpg', 120, 0, 1700, N'AIR', 19),
                      (13, N'804efd54-0353-4a51-bc6d-b149803a65db', 1, NULL, N'ML120 PRO LED', 27, N'https://cdn.pcpartpicker.com/static/forever/images/product/ae67a9e317a6e28209c2f276f2609bd4.1600.jpg', 120, 1, 1500, N'AIR', 6),
                      (14, N'3eebc1c2-f91c-4fbc-889c-ba22f421612f', 1, NULL, N'SP120 RGB', 17, N'https://cdn.pcpartpicker.com/static/forever/images/product/204befc450a5aa5cc5d2f9b980481d9f.1600.jpg', 120, 1, 1400, N'AIR', 19),
-                     (15, N'01ad04e7-c05d-4aff-bf6b-ad1d3de52d40', 1, NULL, N'NF-R8 redux', 9, N'http://ecx.images-amazon.com/images/I/51IUhpueJWL.jpg', 80, 0, 1800, N'AIR', 20)
+                     (15, N'01ad04e7-c05d-4aff-bf6b-ad1d3de52d40', 1, NULL, N'NF-R8 redux', 9, N'http://ecx.images-amazon.com/images/I/51IUhpueJWL.jpg', 80, 0, 1800, N'AIR', 20),
+                     (16, N'17ea6a7a-7cbb-49de-a7ce-36b0308c5ea9', 1, NULL, N'Pure Wings 2 PWM High-Speed', 22, N'https://m.media-amazon.com/images/I/41uKYoqTsNL.jpg', 140, 0, 1600, N'AIR', 20)
                  )
                      AS temp ([id], [uid], [version], [deleted_on], [name], [price], [image_url], [size], [is_rgb], [speed], [cooling_type], [manufacturer_fk])
         ) AS S
@@ -271,7 +273,7 @@ BEGIN
                      (6, N'8c1d5da7-4962-4707-95c4-04589e4bfa80', 1, NULL, N'Ryzen 5 2600', 130, N'https://cdn.pcpartpicker.com/static/forever/images/product/55aea2dd64e2e3a3e3b1d678048d8d76.1600.jpg', 6, 12, 3.4, 32, 1, 5, 2),
                      (7, N'89233759-d8e7-4c6c-9587-f27bc25f9083', 1, NULL, N'Core i5-9400F', 140, N'https://cdn.pcpartpicker.com/static/forever/images/product/3b2d769c28b9890779f87a7568887dfc.1600.jpg', 6, 6, 2.9, 32, 1, 2, 3),
                      (8, N'54161376-55e6-44ec-8c0f-f869ce823df2', 1, NULL, N'Ryzen 5 2600X', 150, N'https://cdn.pcpartpicker.com/static/forever/images/product/55aea2dd64e2e3a3e3b1d678048d8d76.1600.jpg', 6, 12, 3.6, 32, 1, 5, 2),
-                     (9, N'b3d9b83a-edd2-4a66-a0d3-2e8960b07401', 1, NULL, N'Ryzen 7 2700X', 200, N'https://cdn.pcpartpicker.com/static/forever/images/product/4e84967ef18c9b42e543b58c836d73ef.1600.jpg', 8, 16, 4.3, 32, 1, 5, 2),
+                     (9, N'b3d9b83a-edd2-4a66-a0d3-2e8960b07401', 1, NULL, N'Ryzen 7 2700X', 250, N'https://cdn.pcpartpicker.com/static/forever/images/product/4e84967ef18c9b42e543b58c836d73ef.1600.jpg', 8, 16, 4.3, 32, 1, 5, 2),
                      (10, N'c44c4114-eb3a-42b2-b507-58781ab21d0a', 1, NULL, N'Ryzen 3 2200G', 80, N'https://cdn.pcpartpicker.com/static/forever/images/product/ad2e56d88c77de3053dcc5dada363f58.1600.jpg', 4, 8, 3.5, 32, 1, 5, 2),
                      (11, N'97dc7d6c-e693-4b84-84cf-8a8a024fc789', 1, NULL, N'Ryzen 5 3600X', 240, N'https://cdn.pcpartpicker.com/static/forever/images/product/c7baf2c9c9cc15ae23adb24c2f4316fc.1600.jpg', 6, 12, 3.8, 32, 1, 5, 2),
                      (12, N'fa3050c7-d68d-4ed3-8606-f3b0cbdfdc04', 1, NULL, N'Core i7-8700K', 350, N'https://cdn.pcpartpicker.com/static/forever/images/product/3760e89d1820da393f084e2c18a62e3b.1600.jpg', 6, 12, 3.7, 12, 0, 2, 3),
@@ -351,7 +353,8 @@ BEGIN
                      (19, N'74af02eb-d61a-4604-a679-e485bfc0e758', 1, NULL, N'Radeon RX 5700 8 GB MECH OC', 360, N'https://cdn.pcpartpicker.com/static/forever/images/product/f35fedb0450427dec520c5efb19d9c46.1600.jpg', 1380.0, 14000.0, N'1', 8.0, N'GDDR6', 6),
                      (20, N'36e37a36-1499-4fb8-a1f3-2c378b8298d8', 1, NULL, N'GeForce GTX 1050 Ti 4 GB', 150, N'https://cdn.pcpartpicker.com/static/forever/images/product/05cdbb665a59f5f73dcaf1a414c8ad04.1600.jpg', 1350.0, 8000.0, N'1', 4.0, N'GDDR5', 6),
                      (21, N'b48e092e-d7bd-45f0-be9f-5470cd1167ed', 1, NULL, N'GeForce GTX 1050 Ti 4 GB GAMING X 4G', 170, N'https://cdn.pcpartpicker.com/static/forever/images/product/2fab0ac0a13fef6a74ca8171b62e28dc.1600.jpg', 1380.0, 8000.0, N'1', 4.0, N'GDDR5', 6),
-                     (22, N'f6dcff58-0595-41b8-844d-fd0d3774c996', 1, NULL, N'GeForce GTX 1050 2 GB', 100, N'https://cdn.pcpartpicker.com/static/forever/images/product/d622ea150f25f44d91631a29c59f42a8.1600.jpg', 1300.0, 8000.0, N'1', 2.0, N'GDDR5', 6)
+                     (22, N'f6dcff58-0595-41b8-844d-fd0d3774c996', 1, NULL, N'GeForce GTX 1050 2 GB', 100, N'https://cdn.pcpartpicker.com/static/forever/images/product/d622ea150f25f44d91631a29c59f42a8.1600.jpg', 1300.0, 8000.0, N'1', 2.0, N'GDDR5', 6),
+                     (23, N'8d66fa59-1e58-4846-89b7-4b1333d196e6', 1, NULL, N'GeForce RTX 2070 GAMING OC', 499, N'https://cdn.pcpartpicker.com/static/forever/images/product/00b450d148890048c09aba486c9e749f.1600.jpg', 1620.0, 6800, N'1', 8.0, N'GDDR6', 11)
                  )
                      AS temp ([id], [uid], [version], [deleted_on], [name], [price], [image_url], [frequency], [memory_clock], [timing], [ram_size], [memory_type], [manufacturer_fk])
         ) AS S
@@ -411,7 +414,8 @@ BEGIN
                      (22, N'f67afb09-92b7-4e5a-94d5-20e0543ffc7a', 1, NULL, N'PRIME X570-PRO', 240, N'https://cdn.pcpartpicker.com/static/forever/images/product/b06a90d7ec5a485121a21751cdc3d9b9.1600.jpg', 4, 128, N'ATX', 5, 1, 18),
                      (23, N'671f7b77-1df7-40bf-8a8e-e19373a68bcd', 1, NULL, N'ROG Strix X570-E Gaming', 320, N'https://cdn.pcpartpicker.com/static/forever/images/product/8edda8b2608b4fe4e5c3777f9e6df4fd.1600.jpg', 4, 128, N'ATX', 5, 1, 18),
                      (24, N'ea8523cc-41a2-4720-a737-04b555ae2177', 1, NULL, N'TUF GAMING X570-PLUS', 190, N'https://cdn.pcpartpicker.com/static/forever/images/product/c96321a1e039a1f7fd1bc917c5ae72b7.1600.jpg', 4, 64, N'ATX', 5, 1, 18),
-                     (25, N'6eeaab9b-be1f-468d-855b-e2b850c6ab23', 1, NULL, N'MPG Z390 GAMING PLUS', 130, N'https://cdn.pcpartpicker.com/static/forever/images/product/a6ae20785466eef236198522ad3a4fa5.1600.jpg', 4, 64, N'ATX', 2, 8, 4)
+                     (25, N'6eeaab9b-be1f-468d-855b-e2b850c6ab23', 1, NULL, N'MPG Z390 GAMING PLUS', 130, N'https://cdn.pcpartpicker.com/static/forever/images/product/a6ae20785466eef236198522ad3a4fa5.1600.jpg', 4, 64, N'ATX', 2, 8, 4),
+                     (26, N'1e68a032-cf53-4dce-8b77-768f511f4c49', 1, NULL, N'X470 AORUS ULTRA GAMING', 165, N'https://images-na.ssl-images-amazon.com/images/I/61fgOAI2PuL.jpg', 4, 64, N'ATX', 5, 2, 11)
                  )
                      AS temp ([id], [uid], [version], [deleted_on], [name], [price], [image_url], [number_of_dimm_slots], [memory_supported], [motherboard_type], [socket_fk], [chipset_fk], [manufacturer_fk])
         ) AS S
@@ -466,7 +470,8 @@ BEGIN
                      (17, N'977cd072-17f0-441c-a8b5-7ff027ad18ed', 1, NULL, N'BQ', 60, N'http://ecx.images-amazon.com/images/I/51J5s4nQnWL.jpg', 750, N'NON_MODULAR', 2, 6),
                      (18, N'd86d61e1-bd8a-4c22-a8ca-8dc8fb2eb1d2', 1, NULL, N'CXM 750 W', 90, N'https://cdn.pcpartpicker.com/static/forever/images/product/23a8f923c23d6de30026d889136bf175.1600.jpg', 750, N'SEMI_MODULAR', 2, 19),
                      (19, N'a1f00d87-ebbc-450b-8624-264b4ac0dec4', 1, NULL, N'VS', 35, N'https://images-na.ssl-images-amazon.com/images/I/51pKHarWxGL.jpg', 450, N'NON_MODULAR', 1, 19),
-                     (20, N'0c64445b-c682-4ca6-953b-ff0d19320d5f', 1, NULL, N'RMx White (2018)', 130, N'https://cdn.pcpartpicker.com/static/forever/images/product/78afeb3cab692533f7fad2eba2975750.1600.jpg', 750, N'MODULAR', 4, 19)
+                     (20, N'0c64445b-c682-4ca6-953b-ff0d19320d5f', 1, NULL, N'RMx White (2018)', 130, N'https://cdn.pcpartpicker.com/static/forever/images/product/78afeb3cab692533f7fad2eba2975750.1600.jpg', 750, N'MODULAR', 4, 19),
+                     (21, N'ea3bc280-faaa-430d-9c8c-70b050c5826d', 1, NULL, N'V 750 80+ GOLD', 150, N'https://cdn.pcpartpicker.com/static/forever/images/product/aa78454363b18d03d4bc6ec320f4c729.256p.jpg', 750, N'MODULAR', 4, 6)
                  )
                      AS temp ([id], [uid], [version], [deleted_on], [name], [price], [image_url], [capacity], [modularity_type], [psu_efficiency_fk], [manufacturer_fk])
         ) AS S
@@ -572,7 +577,8 @@ BEGIN
                      (16, N'71122a11-c0d2-42a5-b537-2f769121b77e', 1, NULL, N'HyperX Fury Blue', 30, N'https://cdn.pcpartpicker.com/static/forever/images/product/420350537fa9e0e49b1e491fe9c4810d.1600.jpg', 1600, 8, NULL, N'DDR4', 10),
                      (17, N'c0727be8-46e0-4581-b48c-5af3071f5379', 1, NULL, N'Ripjaws V Series 8 GB', 33, N'http://ecx.images-amazon.com/images/I/41UyfTQGqiL.jpg', 2400, 8, NULL, N'DDR4', 12),
                      (18, N'68b4fc7b-080b-440e-a6e1-8de25e66d4ae', 1, NULL, N'Aegis', 47, N'https://cdn.pcpartpicker.com/static/forever/images/product/0c6edb82799a2627d1ea10e7cba3abfb.1600.jpg', 2666, 16, NULL, N'DDR4', 12),
-                     (19, N'62e10ae9-8ecd-499b-9bcc-b3aad8e50788', 1, NULL, N'Aegis', 38, N'https://cdn.pcpartpicker.com/static/forever/images/product/cecd6ed1bee7da70050efd4881c95968.1600.jpg', 2666, 8, NULL, N'DDR4', 12)
+                     (19, N'62e10ae9-8ecd-499b-9bcc-b3aad8e50788', 1, NULL, N'Aegis', 38, N'https://cdn.pcpartpicker.com/static/forever/images/product/cecd6ed1bee7da70050efd4881c95968.1600.jpg', 2666, 8, NULL, N'DDR4', 12),
+                     (20, N'999d68bf-7b05-4e66-8ee3-fb69fdb76299', 1, NULL, 'Flare X', 110, N'https://images-eu.ssl-images-amazon.com/images/I/41Rho8VJhRL.jpg', 3200, 16, N'14-14-14-34', N'DDR4', 12)
                  )
                      AS temp ([id], [uid], [version], [deleted_on], [name], [price], [image_url], [frequency], [size], [timing], [memory_type], [manufacturer_fk])
         ) AS S
@@ -596,5 +602,48 @@ BEGIN
         (S.[id], S.[uid], S.[version], S.[deleted_on], S.[name], S.[price], S.[image_url], S.[frequency], S.[size], S.[timing], S.[memory_type], S.[manufacturer_fk]);
 
     SET IDENTITY_INSERT [dbo].[ram] OFF
+END
+-----------------------------------------------------------------------------------------------
+-- COMPUTER SEED DATA
+BEGIN
+    SET IDENTITY_INSERT [dbo].[computer] ON
+    MERGE [dbo].[computer] AS T
+    USING
+        (
+            SELECT *
+            FROM (
+                     VALUES
+                     (1, N'a7568fd4-bb3a-4aed-af69-7c8c2c16e46a', 1, NULL, N'Viktor''s Pc', 1501, 4, 32, 250, 3, 16, 9, 22, 26, 21, 20, 16),
+                     (2, N'f7066945-91b4-4c8d-9139-e8cdaf60ee77', 1, NULL, N'Chingo''s Pc', 2201, 4, 16, 250, 3, 16, 6, 4, 1, 5, 5, 6),
+                     (3, N'3f1334ac-d17a-40f0-9b72-7731b9d04e42', 1, NULL, N'Mazhe''s Pc', 1596, 1, 32, 500, 1, 1, 1, 1, 1, 1, 1, 1),
+                     (4, N'7cdf1bbd-fd2d-4440-8679-8e9a2baf9443', 1, NULL, N'Astor''s Pc', 2232, 2, 64, 2048, 2, 2, 2, 2, 2, 2, 2, 2)
+                 )
+                     AS temp ([id], [uid], [version], [deleted_on], [name], [price], [fan_count], [ram_amount], [storage_amount], [pc_case_fk], [cooling_fk], [cpu_fk], [gpu_fk], [motherboard_fk], [psu_fk], [ram_fk], [storage_fk])
+        ) AS S
+    ON T.id=S.id
+    WHEN MATCHED THEN UPDATE SET
+                                 T.[uid] = S.[uid],
+                                 T.[version] = S.[version],
+                                 T.[deleted_on] = S.[deleted_on],
+                                 T.[name] = S.[name],
+                                 T.[price] = S.[price],
+                                 T.[fan_count] = S.[fan_count],
+                                 T.[ram_amount] = S.[ram_amount],
+                                 T.[storage_amount] = S.[storage_amount],
+                                 T.[pc_case_fk] = S.[pc_case_fk],
+                                 T.[cooling_fk] = S.[cooling_fk],
+                                 T.[cpu_fk] = S.[cpu_fk],
+                                 T.[gpu_fk] = S.[gpu_fk],
+                                 T.[motherboard_fk] = S.[motherboard_fk],
+                                 T.[psu_fk] = S.[psu_fk],
+                                 T.[ram_fk] = S.[ram_fk],
+                                 T.[storage_fk] = S.[storage_fk]
+    WHEN NOT MATCHED THEN
+        INSERT
+        ([id], [uid], [version], [deleted_on], [name], [price], [fan_count], [ram_amount], [storage_amount], [pc_case_fk], [cooling_fk], [cpu_fk], [gpu_fk], [motherboard_fk], [psu_fk], [ram_fk], [storage_fk])
+        VALUES
+        (S.[id], S.[uid], S.[version], S.[deleted_on], S.[name], S.[price], S.[fan_count], S.[ram_amount], S.[storage_amount], S.[pc_case_fk], S.[cooling_fk], S.[cpu_fk], S.[gpu_fk], S.[motherboard_fk], S.[psu_fk], S.[ram_fk], S.[storage_fk]);
+
+    SET IDENTITY_INSERT [dbo].[manufacturer] OFF
 END
 -----------------------------------------------------------------------------------------------
