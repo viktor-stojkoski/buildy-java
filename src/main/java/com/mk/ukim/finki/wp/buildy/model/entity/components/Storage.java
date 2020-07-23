@@ -1,10 +1,12 @@
 package com.mk.ukim.finki.wp.buildy.model.entity.components;
 
+import com.mk.ukim.finki.wp.buildy.model.entity.Computer;
 import com.mk.ukim.finki.wp.buildy.model.entity.base.BaseEntity;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Manufacturer;
 import com.mk.ukim.finki.wp.buildy.model.enumeration.StorageType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Storage extends BaseEntity {
@@ -27,6 +29,9 @@ public class Storage extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "manufacturer_fk")
     private Manufacturer manufacturer;
+
+    @OneToMany(mappedBy = "storage")
+    private List<Computer> computers;
 
     public String getName() {
         return name;
@@ -90,5 +95,13 @@ public class Storage extends BaseEntity {
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public List<Computer> getComputers() {
+        return computers;
+    }
+
+    public void setComputers(List<Computer> computers) {
+        this.computers = computers;
     }
 }

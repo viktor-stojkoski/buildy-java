@@ -1,5 +1,6 @@
 package com.mk.ukim.finki.wp.buildy.model.entity.components;
 
+import com.mk.ukim.finki.wp.buildy.model.entity.Computer;
 import com.mk.ukim.finki.wp.buildy.model.entity.base.BaseEntity;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Manufacturer;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Socket;
@@ -7,6 +8,8 @@ import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Socket;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Cpu extends BaseEntity {
@@ -34,6 +37,9 @@ public class Cpu extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "socket_fk")
     private Socket socket;
+
+    @OneToMany(mappedBy = "cpu")
+    private List<Computer> computers;
 
     public String getName() {
         return name;
@@ -113,5 +119,13 @@ public class Cpu extends BaseEntity {
 
     public void setSocket(Socket socket) {
         this.socket = socket;
+    }
+
+    public List<Computer> getComputers() {
+        return computers;
+    }
+
+    public void setComputers(List<Computer> computers) {
+        this.computers = computers;
     }
 }
