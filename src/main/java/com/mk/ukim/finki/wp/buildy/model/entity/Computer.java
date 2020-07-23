@@ -53,4 +53,108 @@ public class Computer extends BaseEntity {
     private Storage storage;
 
     // TODO: Add users
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getFanCount() {
+        return fanCount;
+    }
+
+    public void setFanCount(int fanCount) {
+        this.fanCount = fanCount;
+    }
+
+    public int getRamAmount() {
+        return ramAmount;
+    }
+
+    public void setRamAmount(int ramAmount) {
+        this.ramAmount = ramAmount;
+    }
+
+    public int getStorageAmount() {
+        return storageAmount;
+    }
+
+    public void setStorageAmount(int storageAmount) {
+        this.storageAmount = storageAmount;
+    }
+
+    public Case getPcCase() {
+        return pcCase;
+    }
+
+    public void setPcCase(Case pcCase) {
+        this.pcCase = pcCase;
+    }
+
+    public Cooling getCooling() {
+        return cooling;
+    }
+
+    public void setCooling(Cooling cooling) {
+        this.cooling = cooling;
+    }
+
+    public Cpu getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(Cpu cpu) {
+        this.cpu = cpu;
+    }
+
+    public Gpu getGpu() {
+        return gpu;
+    }
+
+    public void setGpu(Gpu gpu) {
+        this.gpu = gpu;
+    }
+
+    public Motherboard getMotherboard() {
+        return motherboard;
+    }
+
+    public void setMotherboard(Motherboard motherboard) {
+        this.motherboard = motherboard;
+    }
+
+    public Psu getPsu() {
+        return psu;
+    }
+
+    public void setPsu(Psu psu) {
+        this.psu = psu;
+    }
+
+    public Ram getRam() {
+        return ram;
+    }
+
+    public void setRam(Ram ram) {
+        this.ram = ram;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
+    }
 }

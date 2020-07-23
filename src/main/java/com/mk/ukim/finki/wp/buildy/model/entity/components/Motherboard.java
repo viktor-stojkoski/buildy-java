@@ -1,5 +1,6 @@
 package com.mk.ukim.finki.wp.buildy.model.entity.components;
 
+import com.mk.ukim.finki.wp.buildy.model.entity.Computer;
 import com.mk.ukim.finki.wp.buildy.model.entity.base.BaseEntity;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Chipset;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Manufacturer;
@@ -7,6 +8,7 @@ import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Socket;
 import com.mk.ukim.finki.wp.buildy.model.enumeration.MotherboardType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Motherboard extends BaseEntity {
@@ -35,6 +37,9 @@ public class Motherboard extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "manufacturer_fk")
     private Manufacturer manufacturer;
+
+    @OneToMany(mappedBy = "motherboard")
+    private List<Computer> computers;
 
     public String getName() {
         return name;
@@ -106,5 +111,13 @@ public class Motherboard extends BaseEntity {
 
     public void setChipset(Chipset chipset) {
         this.chipset = chipset;
+    }
+
+    public List<Computer> getComputers() {
+        return computers;
+    }
+
+    public void setComputers(List<Computer> computers) {
+        this.computers = computers;
     }
 }

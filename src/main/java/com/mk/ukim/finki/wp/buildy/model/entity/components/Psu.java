@@ -1,11 +1,13 @@
 package com.mk.ukim.finki.wp.buildy.model.entity.components;
 
+import com.mk.ukim.finki.wp.buildy.model.entity.Computer;
 import com.mk.ukim.finki.wp.buildy.model.entity.base.BaseEntity;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.Manufacturer;
 import com.mk.ukim.finki.wp.buildy.model.entity.helpers.PsuEfficiency;
 import com.mk.ukim.finki.wp.buildy.model.enumeration.ModularityType;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Psu extends BaseEntity {
@@ -28,6 +30,9 @@ public class Psu extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "manufacturer_fk")
     private Manufacturer manufacturer;
+
+    @OneToMany(mappedBy = "psu")
+    private List<Computer> computers;
 
     public String getName() {
         return name;
@@ -83,5 +88,13 @@ public class Psu extends BaseEntity {
 
     public void setPsuEfficiency(PsuEfficiency psuEfficiency) {
         this.psuEfficiency = psuEfficiency;
+    }
+
+    public List<Computer> getComputers() {
+        return computers;
+    }
+
+    public void setComputers(List<Computer> computers) {
+        this.computers = computers;
     }
 }
