@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img class="header-logo" src="../../../assets/BuildyLogoWhite.png" />
+    <div fxShow="true" fxHide.lt-md>
+      <a mat-button [routerLink]="'/accounts'"> What is Buildy? </a>
+      <a mat-button [routerLink]="'/create-account'"> Build a computer </a>
+      <a mat-button [routerLink]="'/contacts'"> About </a>
+      <a mat-button [routerLink]="'/create-contact'"> Contact </a>
+    </div>
+    <span class="menu-spacer"></span>
+    <div fxShow="true" fxHide.lt-md>
+      <a mat-button [routerLink]="'/activities'"> Register </a>
+      <a mat-button [routerLink]="'/create-activity'"> Log in </a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a href="#" mat-list-item> What is Buildy? </a>
+      <a href="#" mat-list-item> Build a computer </a>
+      <a href="#" mat-list-item> About </a>
+      <a href="#" mat-list-item> Contact </a>
+      <a href="#" mat-list-item> Register </a>
+      <a href="#"mat-list-item> Login </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!-- <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content> -->
+</mat-sidenav-container>
+<router-outlet></router-outlet>
