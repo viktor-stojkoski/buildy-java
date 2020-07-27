@@ -5,15 +5,15 @@
     </button>
     <img class="header-logo" src="../../../assets/BuildyLogoWhite.png" />
     <div fxShow="true" fxHide.lt-md>
-      <a mat-button [routerLink]="'/accounts'"> What is Buildy? </a>
-      <a mat-button [routerLink]="'/create-account'"> Build a computer </a>
-      <a mat-button [routerLink]="'/contacts'"> About </a>
-      <a mat-button [routerLink]="'/create-contact'"> Contact </a>
+      <a mat-button [routerLink]=""> What is Buildy? </a>
+      <a mat-button [routerLink]="'/build'"> Build a computer </a>
+      <a mat-button [routerLink]="'/about'"> About </a>
+      <a mat-button [routerLink]="'/contact'"> Contact </a>
     </div>
     <span class="menu-spacer"></span>
     <div fxShow="true" fxHide.lt-md>
-      <a mat-button [routerLink]="'/activities'"> Register </a>
-      <a mat-button [routerLink]="'/create-activity'"> Log in </a>
+      <a mat-button [routerLink]="'/register'"> Register </a>
+      <a mat-button [routerLink]="'/login'"> Log in </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -31,4 +31,3 @@
   </mat-sidenav>
   <!-- <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content> -->
 </mat-sidenav-container>
-<router-outlet></router-outlet>
