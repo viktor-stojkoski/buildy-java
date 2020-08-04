@@ -19,9 +19,9 @@ $buildy-warn:    mat-palette($mat-red);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as `color` or `typography`.
 $buildy-theme: mat-light-theme(
-    $buildy-primary,
-    $buildy-accent,
-    $buildy-warn,
+  $buildy-primary,
+  $buildy-accent,
+  $buildy-warn,
 );
 
 // Include theme styles for core and each component used in your app.
