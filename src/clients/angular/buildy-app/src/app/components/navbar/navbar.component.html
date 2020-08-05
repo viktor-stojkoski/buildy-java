@@ -21,12 +21,12 @@
 <mat-sidenav-container fxFlexFill>
   <mat-sidenav #sidenav>
     <mat-nav-list>
-      <a href="#" mat-list-item> What is Buildy? </a>
-      <a href="#" mat-list-item> Build a computer </a>
-      <a href="#" mat-list-item> About </a>
-      <a href="#" mat-list-item> Contact </a>
-      <a href="#" mat-list-item> Register </a>
-      <a href="#"mat-list-item> Login </a>
+      <a [routerLink]="" mat-list-item (click)="sidenav.toggle()"> What is Buildy? </a>
+      <a [routerLink]="'/build'" mat-list-item (click)="sidenav.toggle()"> Build a computer </a>
+      <a [routerLink]="'/about'" mat-list-item (click)="sidenav.toggle()"> About </a>
+      <a [routerLink]="'/contact'" mat-list-item (click)="sidenav.toggle()"> Contact </a>
+      <a [routerLink]="'/register'" mat-list-item (click)="sidenav.toggle()"> Register </a>
+      <a [routerLink]="'/login'" mat-list-item (click)="sidenav.toggle()"> Login </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content fxFlexFill>
