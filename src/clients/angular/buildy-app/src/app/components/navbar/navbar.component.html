@@ -6,14 +6,14 @@
     <img class="header-logo" src="../../../assets/buildy-logo-white.png" />
     <div fxShow="true" fxHide.lt-md>
       <a mat-button [routerLink]=""> What is Buildy? </a>
-      <a mat-button [routerLink]="'/build'"> Build a computer </a>
-      <a mat-button [routerLink]="'/about'"> About </a>
-      <a mat-button [routerLink]="'/contact'"> Contact </a>
+      <a mat-button [routerLink]="'/build'" routerLinkActive="mat-accent"> Build a computer </a>
+      <a mat-button [routerLink]="'/about'" routerLinkActive="mat-accent"> About </a>
+      <a mat-button [routerLink]="'/contact'" routerLinkActive="mat-accent"> Contact </a>
     </div>
     <span class="menu-spacer"></span>
     <div fxShow="true" fxHide.lt-md>
-      <a mat-button [routerLink]="'/register'"> Register </a>
-      <a mat-button [routerLink]="'/login'"> Log in </a>
+      <a mat-button [routerLink]="'/register'" routerLinkActive="mat-accent"> Register </a>
+      <a mat-button [routerLink]="'/login'" routerLinkActive="mat-accent"> Log in </a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
