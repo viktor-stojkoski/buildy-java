@@ -1,24 +1,31 @@
 <mat-toolbar color="primary">
+
   <mat-toolbar-row>
     <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
       <mat-icon>menu</mat-icon>
     </button>
+
     <img class="header-logo" src="../../../assets/buildy-logo-white.png" />
+
     <div fxShow="true" fxHide.lt-md>
       <a mat-button [routerLink]=""> What is Buildy? </a>
       <a mat-button [routerLink]="'/build'" routerLinkActive="mat-accent"> Build a computer </a>
       <a mat-button [routerLink]="'/about'" routerLinkActive="mat-accent"> About </a>
       <a mat-button [routerLink]="'/contact'" routerLinkActive="mat-accent"> Contact </a>
     </div>
+
     <span class="menu-spacer"></span>
+
     <div fxShow="true" fxHide.lt-md>
       <a mat-button [routerLink]="'/register'" routerLinkActive="mat-accent"> Register </a>
       <a mat-button [routerLink]="'/login'" routerLinkActive="mat-accent"> Log in </a>
     </div>
   </mat-toolbar-row>
+
 </mat-toolbar>
 
 <mat-sidenav-container fxFlexFill>
+
   <mat-sidenav #sidenav>
     <mat-nav-list>
       <a [routerLink]="" mat-list-item (click)="sidenav.toggle()"> What is Buildy? </a>
@@ -29,7 +36,9 @@
       <a [routerLink]="'/login'" mat-list-item (click)="sidenav.toggle()"> Login </a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content fxFlexFill>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
+
 </mat-sidenav-container>
