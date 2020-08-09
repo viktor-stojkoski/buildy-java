@@ -1,5 +1,6 @@
 package com.mk.ukim.finki.wp.buildy.model.enumeration;
 
+// TODO: Rename this -> ComputerComponentName
 public enum ComputerComponentNames {
     CPU("Processor"),
     GPU("Graphics Card"),

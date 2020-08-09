@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,5 +15,9 @@ export class HomeComponent implements OnInit {
 
   public navigateToBuild(): void {
     this.router.navigate(['build']);
+  }
+
+  public navigateToOurBuild(buildId: number): void {
+    this.router.navigate(['build', buildId]);
   }
 }

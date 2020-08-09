@@ -613,7 +613,7 @@ BEGIN
             SELECT *
             FROM (
                      VALUES
-                     (1, N'a7568fd4-bb3a-4aed-af69-7c8c2c16e46a', 1, NULL, N'Viktor''s Pc', 1501, 4, 32, 250, 3, 16, 9, 22, 26, 21, 20, 16),
+                     (1, N'a7568fd4-bb3a-4aed-af69-7c8c2c16e46a', 1, NULL, N'Viktor''s Pc', 1501, 4, 32, 250, 3, 16, 9, 23, 26, 21, 20, 16),
                      (2, N'f7066945-91b4-4c8d-9139-e8cdaf60ee77', 1, NULL, N'Chingo''s Pc', 2201, 4, 16, 250, 3, 16, 6, 4, 1, 5, 5, 6),
                      (3, N'3f1334ac-d17a-40f0-9b72-7731b9d04e42', 1, NULL, N'Mazhe''s Pc', 1596, 1, 32, 500, 1, 1, 1, 1, 1, 1, 1, 1),
                      (4, N'7cdf1bbd-fd2d-4440-8679-8e9a2baf9443', 1, NULL, N'Astor''s Pc', 2232, 2, 64, 2048, 2, 2, 2, 2, 2, 2, 2, 2)

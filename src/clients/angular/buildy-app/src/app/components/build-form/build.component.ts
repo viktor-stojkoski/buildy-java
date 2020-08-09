@@ -4,7 +4,10 @@ import {MatSort} from '@angular/material/sort';
 import {ComputersService} from 'src/app/services/computers/computers.service';
 import {IComputerComponentNameDto, IPart} from 'src/app/models/computer.interfaces';
 import {DestroyBaseComponent} from 'src/app/helpers/components/destroy-base.component';
-import {takeUntil} from 'rxjs/operators';
+import {switchMap, takeUntil, tap} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
+import {forkJoin, iif, of} from 'rxjs';
+import {ComputerMapper} from 'src/app/helpers/mappers/computer.mapper';
 
 @Component({
   selector: 'app-build',
@@ -12,40 +15,46 @@ import {takeUntil} from 'rxjs/operators';
   styleUrls: ['./build.component.scss']
 })
 export class BuildComponent extends DestroyBaseComponent implements OnInit {
+  private computerId: number;
+
   public computerComponentNames: IComputerComponentNameDto[];
+  public totalPrice: number;
 
   public displayedColumns = ['part', 'selectedPart', 'price', 'actions'];
   public dataSource: MatTableDataSource<IPart>;
 
+
   @ViewChild(MatSort, {static: true}) public sort: MatSort;
 
-  constructor(private computerService: ComputersService) {
+  constructor(
+    private computerService: ComputersService,
+    private route: ActivatedRoute) {
     super();
   }
 
   public ngOnInit(): void {
-    this.computerService
-      .getComputerComponentNames()
-      .pipe(takeUntil(this.destroyed))
+    this.route.paramMap
+      .pipe(
+        tap(params => this.computerId = Number.parseInt(params.get('id'))),
+        switchMap(() => forkJoin([
+          this.computerService.getComputerComponentNames(),
+          iif(
+            () => !isNaN(this.computerId),
+            this.computerService.getComputer(this.computerId),
+            of(null)),
+        ])),
+        takeUntil(this.destroyed),
+      )
       .subscribe({
-        next: result => {
-          this.computerComponentNames = result;
-          const components = this.computerComponentNames.map(component => createComponent(component.longName));
+        next: ([computerComponentNames, computer]) => {
+          this.computerComponentNames = computerComponentNames;
+          const components = ComputerMapper.toPartTest(computerComponentNames, computer);
 
           this.dataSource = new MatTableDataSource(components);
           this.dataSource.sort = this.sort;
-        },
-        error: error => console.error(error)
+          this.totalPrice = this.getTotalPrice();
+        }
       });
-  }
-
-  public applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 
   public getTotalPrice(): number {
@@ -55,14 +64,4 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
         .reduce((acc, value) => acc + value, 0)
       : 0;
   }
-}
-
-function createComponent(componentName: string): IPart {
-
-  return {
-    part: componentName,
-    selectedPart: '',
-    price: 0
-  };
-
 }
