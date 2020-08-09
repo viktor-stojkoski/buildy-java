@@ -1,11 +1,9 @@
 package com.mk.ukim.finki.wp.buildy.web.controller;
 
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerComponentNameDto;
+import com.mk.ukim.finki.wp.buildy.model.dto.ComputerDto;
 import com.mk.ukim.finki.wp.buildy.service.ComputerService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,10 @@ public class ComputersController {
     @GetMapping("component-names")
     public List<ComputerComponentNameDto> getComputerComponentNames(){
         return computerService.getComputerComponentNames();
+    }
+
+    @GetMapping("{id}")
+    public ComputerDto getComputer(@PathVariable Long id) {
+        return computerService.getComputer(id);
     }
 }

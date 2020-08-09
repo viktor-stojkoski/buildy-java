@@ -14,17 +14,18 @@ import {takeUntil} from 'rxjs/operators';
 export class BuildComponent extends DestroyBaseComponent implements OnInit {
   public computerComponentNames: IComputerComponentNameDto[];
 
-  displayedColumns: string[] = ['part', 'selectedPart', 'price', 'actions'];
-  dataSource: MatTableDataSource<IPart>;
+  public displayedColumns = ['part', 'selectedPart', 'price', 'actions'];
+  public dataSource: MatTableDataSource<IPart>;
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) public sort: MatSort;
 
   constructor(private computerService: ComputersService) {
     super();
   }
 
-  ngOnInit() {
-    this.computerService.getComputerComponentNames()
+  public ngOnInit(): void {
+    this.computerService
+      .getComputerComponentNames()
       .pipe(takeUntil(this.destroyed))
       .subscribe({
         next: result => {
@@ -38,7 +39,7 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
       });
   }
 
-  applyFilter(event: Event) {
+  public applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -48,17 +49,20 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
   }
 
   public getTotalPrice(): number {
-    return this.dataSource?.data ? this.dataSource.data.map(data => data.price).reduce((acc, value) => acc + value, 0) : 0;
+    return this.dataSource?.data ?
+      this.dataSource.data
+        .map(data => data.price)
+        .reduce((acc, value) => acc + value, 0)
+      : 0;
   }
 }
 
-/** Builds and returns a new User. */
 function createComponent(componentName: string): IPart {
 
   return {
     part: componentName,
     selectedPart: '',
-    price: 10
+    price: 0
   };
 
 }
