@@ -1,13 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {ComputersService} from 'src/app/services/computers/computers.service';
-import {IComputerComponentNameDto, IPart} from 'src/app/models/computer.interfaces';
-import {DestroyBaseComponent} from 'src/app/helpers/components/destroy-base.component';
-import {switchMap, takeUntil, tap} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
-import {forkJoin, iif, of} from 'rxjs';
-import {ComputerMapper} from 'src/app/helpers/mappers/computer.mapper';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { ComputersService } from 'src/app/services/computers/computers.service';
+import { IComputerComponentNameDto, IPart } from 'src/app/models/computer.interfaces';
+import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { forkJoin, iif, of } from 'rxjs';
+import { ComputerMapper } from 'src/app/helpers/mappers/computer.mapper';
 
 @Component({
   selector: 'app-build',
@@ -48,7 +48,7 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
       .subscribe({
         next: ([computerComponentNames, computer]) => {
           this.computerComponentNames = computerComponentNames;
-          const components = ComputerMapper.toPartTest(computerComponentNames, computer);
+          const components = ComputerMapper.toPartList(computerComponentNames, computer);
 
           this.dataSource = new MatTableDataSource(components);
           this.dataSource.sort = this.sort;

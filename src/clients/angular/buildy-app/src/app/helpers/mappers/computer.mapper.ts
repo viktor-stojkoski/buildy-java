@@ -3,15 +3,7 @@ import {IComputerComponentNameDto, IComputerDto, IPart} from 'src/app/models/com
 // tslint:disable-next-line: no-namespace
 export namespace ComputerMapper {
 
-  export function toPart(componentName: string, selectedPart: string, price: number): IPart {
-    return {
-      part: componentName,
-      selectedPart,
-      price
-    };
-  }
-
-  export function toPartTest(componentNames: IComputerComponentNameDto[], computer: IComputerDto): IPart[] {
+  export function toPartList(componentNames: IComputerComponentNameDto[], computer: IComputerDto): IPart[] {
     if (computer === null) {
       const parts: IPart[] = componentNames.map(component => {
         return {
