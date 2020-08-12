@@ -1,6 +1,6 @@
 package com.mk.ukim.finki.wp.buildy.service.implementation;
 
-import com.mk.ukim.finki.wp.buildy.mapper.computer.ComputerMapper;
+import com.mk.ukim.finki.wp.buildy.mapper.ComputerMapper;
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerComponentNameDto;
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerDto;
 import com.mk.ukim.finki.wp.buildy.model.entity.Computer;

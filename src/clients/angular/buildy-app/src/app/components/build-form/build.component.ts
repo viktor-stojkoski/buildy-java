@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { ComputersService } from 'src/app/services/computers/computers.service';
+import { ComputerService } from 'src/app/services/computers/computer.service';
 import { IComputerComponentNameDto, IPart } from 'src/app/models/computer.interfaces';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, iif, of } from 'rxjs';
 import { ComputerMapper } from 'src/app/helpers/mappers/computer.mapper';
 
@@ -23,12 +23,12 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
   public displayedColumns = ['part', 'selectedPart', 'price', 'actions'];
   public dataSource: MatTableDataSource<IPart>;
 
-
   @ViewChild(MatSort, {static: true}) public sort: MatSort;
 
   constructor(
-    private computerService: ComputersService,
-    private route: ActivatedRoute) {
+    private computerService: ComputerService,
+    private route: ActivatedRoute,
+    private router: Router) {
     super();
   }
 
@@ -53,7 +53,8 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
           this.dataSource = new MatTableDataSource(components);
           this.dataSource.sort = this.sort;
           this.totalPrice = this.getTotalPrice();
-        }
+        },
+        error: error => console.error(error)
       });
   }
 
@@ -63,5 +64,11 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
         .map(data => data.price)
         .reduce((acc, value) => acc + value, 0)
       : 0;
+  }
+
+  public addOrEditItem(item: IPart): void {
+    const partName = this.computerComponentNames.find(x => x.longName === item.part).shortName;
+
+    this.router.navigate([`build/add/${partName.toLocaleLowerCase()}`]);
   }
 }

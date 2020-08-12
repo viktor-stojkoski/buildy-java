@@ -6,7 +6,7 @@ import { IComputerComponentNameDto, IComputerDto } from 'src/app/models/computer
 @Injectable({
   providedIn: 'root'
 })
-export class ComputersService {
+export class ComputerService {
 
   private computersApiRoute = 'computers';
 
