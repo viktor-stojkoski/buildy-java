@@ -1,7 +1,7 @@
 package com.mk.ukim.finki.wp.buildy.model.enumeration;
 
 // TODO: Rename this -> ComputerComponentName
-public enum ComputerComponentNames {
+public enum ComputerComponentName {
     CPU("Processor"),
     GPU("Graphics Card"),
     RAM("RAM"),
@@ -14,7 +14,7 @@ public enum ComputerComponentNames {
 
     public final String longName;
 
-    ComputerComponentNames(String longName) {
+    ComputerComponentName(String longName) {
         this.longName = longName;
     }
 }
