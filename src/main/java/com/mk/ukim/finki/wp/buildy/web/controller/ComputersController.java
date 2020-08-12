@@ -25,6 +25,6 @@ public class ComputersController {
 
     @GetMapping("{id}")
     public ComputerDto getComputer(@PathVariable Long id) {
-        return computerService.getComputer(id);
+        return computerService.getComputerDto(id);
     }
 }

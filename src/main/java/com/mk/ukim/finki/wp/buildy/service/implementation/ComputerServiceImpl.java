@@ -4,7 +4,7 @@ import com.mk.ukim.finki.wp.buildy.mapper.computer.ComputerMapper;
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerComponentNameDto;
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerDto;
 import com.mk.ukim.finki.wp.buildy.model.entity.Computer;
-import com.mk.ukim.finki.wp.buildy.model.enumeration.ComputerComponentNames;
+import com.mk.ukim.finki.wp.buildy.model.enumeration.ComputerComponentName;
 import com.mk.ukim.finki.wp.buildy.model.exception.BuildyNotFoundException;
 import com.mk.ukim.finki.wp.buildy.model.exception.ErrorCodes;
 import com.mk.ukim.finki.wp.buildy.persistance.ComputerRepository;
@@ -27,20 +27,19 @@ public class ComputerServiceImpl implements ComputerService {
     public List<ComputerComponentNameDto> getComputerComponentNames() {
         List<ComputerComponentNameDto> computerComponentNameDtos = new ArrayList<>();
 
-        for (ComputerComponentNames c : ComputerComponentNames.values()) {
-            computerComponentNameDtos.add(ComputerMapper.toComputerComponentsDto(c));
+        for (ComputerComponentName c : ComputerComponentName.values()) {
+            computerComponentNameDtos.add(ComputerMapper.toComputerComponentNameDto(c));
         }
 
         return computerComponentNameDtos;
     }
 
     @Override
-    public ComputerDto getComputer(Long id) {
+    public ComputerDto getComputerDto(Long id) {
         Computer computer = computerRepository
                 .findById(id)
                 .orElseThrow(() -> new BuildyNotFoundException(ErrorCodes.COMPUTER_NOT_FOUND));
 
         return ComputerMapper.toComputerDto(computer);
     }
-
 }

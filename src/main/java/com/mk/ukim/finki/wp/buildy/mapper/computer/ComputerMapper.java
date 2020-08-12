@@ -4,16 +4,15 @@ import com.mk.ukim.finki.wp.buildy.model.dto.ComputerComponentDto;
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerComponentNameDto;
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerDto;
 import com.mk.ukim.finki.wp.buildy.model.entity.Computer;
-import com.mk.ukim.finki.wp.buildy.model.enumeration.ComputerComponentNames;
+import com.mk.ukim.finki.wp.buildy.model.enumeration.ComputerComponentName;
 
 public final class ComputerMapper {
 
-    // TODO: Rename this method -> `toComputerComponentNameDto`
-    public static ComputerComponentNameDto toComputerComponentsDto(ComputerComponentNames computerComponents) {
+    public static ComputerComponentNameDto toComputerComponentNameDto(ComputerComponentName computerComponent) {
         ComputerComponentNameDto computerComponentNameDto = new ComputerComponentNameDto();
 
-        computerComponentNameDto.setShortName(computerComponents.name());
-        computerComponentNameDto.setLongName(computerComponents.longName);
+        computerComponentNameDto.setShortName(computerComponent.name());
+        computerComponentNameDto.setLongName(computerComponent.longName);
 
         return computerComponentNameDto;
     }
@@ -24,42 +23,42 @@ public final class ComputerMapper {
         ComputerComponentDto cpu = new ComputerComponentDto();
         cpu.setName(computer.getCpu().getName());
         cpu.setPrice(computer.getCpu().getPrice());
-        cpu.setComputerComponentName(ComputerComponentNames.CPU);
+        cpu.setComputerComponentName(ComputerComponentName.CPU);
 
         ComputerComponentDto gpu = new ComputerComponentDto();
         gpu.setName(computer.getGpu().getName());
         gpu.setPrice(computer.getGpu().getPrice());
-        gpu.setComputerComponentName(ComputerComponentNames.GPU);
+        gpu.setComputerComponentName(ComputerComponentName.GPU);
 
         ComputerComponentDto ram = new ComputerComponentDto();
         ram.setName(computer.getRam().getName());
         ram.setPrice(computer.getRam().getPrice());
-        ram.setComputerComponentName(ComputerComponentNames.RAM);
+        ram.setComputerComponentName(ComputerComponentName.RAM);
 
         ComputerComponentDto pcCase = new ComputerComponentDto();
         pcCase.setName(computer.getPcCase().getName());
         pcCase.setPrice(computer.getPcCase().getPrice());
-        pcCase.setComputerComponentName(ComputerComponentNames.Case);
+        pcCase.setComputerComponentName(ComputerComponentName.Case);
 
         ComputerComponentDto cooling = new ComputerComponentDto();
         cooling.setName(computer.getCooling().getName());
         cooling.setPrice(computer.getCooling().getPrice());
-        cooling.setComputerComponentName(ComputerComponentNames.Cooling);
+        cooling.setComputerComponentName(ComputerComponentName.Cooling);
 
         ComputerComponentDto motherboard = new ComputerComponentDto();
         motherboard.setName(computer.getMotherboard().getName());
         motherboard.setPrice(computer.getMotherboard().getPrice());
-        motherboard.setComputerComponentName(ComputerComponentNames.Motherboard);
+        motherboard.setComputerComponentName(ComputerComponentName.Motherboard);
 
         ComputerComponentDto psu = new ComputerComponentDto();
         psu.setName(computer.getPsu().getName());
         psu.setPrice(computer.getPsu().getPrice());
-        psu.setComputerComponentName(ComputerComponentNames.PSU);
+        psu.setComputerComponentName(ComputerComponentName.PSU);
 
         ComputerComponentDto storage = new ComputerComponentDto();
         storage.setName(computer.getStorage().getName());
         storage.setPrice(computer.getStorage().getPrice());
-        storage.setComputerComponentName(ComputerComponentNames.Storage);
+        storage.setComputerComponentName(ComputerComponentName.Storage);
 
         computerDto.setCpu(cpu);
         computerDto.setGpu(gpu);

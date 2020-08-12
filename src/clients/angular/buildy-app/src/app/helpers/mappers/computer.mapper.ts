@@ -1,4 +1,4 @@
-import {IComputerComponentNameDto, IComputerDto, IPart} from 'src/app/models/computer.interfaces';
+import { IComputerComponentNameDto, IComputerDto, IPart } from 'src/app/models/computer.interfaces';
 
 // tslint:disable-next-line: no-namespace
 export namespace ComputerMapper {
