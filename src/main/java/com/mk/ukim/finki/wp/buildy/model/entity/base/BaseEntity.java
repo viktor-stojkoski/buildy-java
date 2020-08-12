@@ -1,5 +1,8 @@
 package com.mk.ukim.finki.wp.buildy.model.entity.base;
 
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -11,12 +14,15 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
+    @NotNull
     @Column(columnDefinition = "UNIQUEIDENTIFIER")
     protected UUID uid;
 
+    @NotNull
     @Version
     protected Long version;
 
+    @Nullable
     protected LocalDateTime deletedOn;
 
     public Long getId() {
