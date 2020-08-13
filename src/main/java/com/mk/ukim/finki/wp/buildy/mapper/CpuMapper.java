@@ -6,7 +6,7 @@ import com.mk.ukim.finki.wp.buildy.model.entity.components.Cpu;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CpuMapper {
+public final class CpuMapper {
 
     public static CpuDto toCpuDto(Cpu cpu) {
         CpuDto cpuDto = new CpuDto();
