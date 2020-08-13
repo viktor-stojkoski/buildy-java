@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ComputerService } from 'src/app/services/computers/computer.service';
-import { IComputerComponentNameDto, IPart } from 'src/app/models/computer.interfaces';
+import { IComputerComponentNameDto, IPart, IComputerDto } from 'src/app/models/computer.interfaces';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { switchMap, takeUntil, tap, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, iif, of } from 'rxjs';
 import { ComputerMapper } from 'src/app/helpers/mappers/computer.mapper';
@@ -41,24 +41,30 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
           iif(
             () => !isNaN(this.computerId),
             this.computerService.getComputer(this.computerId),
-            of(null)),
+            of(null)
+          )
         ])),
         takeUntil(this.destroyed),
       )
       .subscribe({
         next: ([computerComponentNames, computer]) => {
           this.computerComponentNames = computerComponentNames;
-          const components = ComputerMapper.toPartList(computerComponentNames, computer);
-
-          this.dataSource = new MatTableDataSource(components);
-          this.dataSource.sort = this.sort;
-          this.totalPrice = this.getTotalPrice();
+          this.drawTable(computer);
         },
         error: error => console.error(error)
       });
   }
 
-  public getTotalPrice(): number {
+  public addOrEditItem(item: IPart): void {
+    const partName = this.computerComponentNames
+      .find(x => x.longName === item.part)
+      .shortName
+      .toLocaleLowerCase();
+
+    this.router.navigate([`build/add/${partName}`]);
+  }
+
+  private getTotalPrice(): number {
     return this.dataSource?.data ?
       this.dataSource.data
         .map(data => data.price)
@@ -66,9 +72,10 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
       : 0;
   }
 
-  public addOrEditItem(item: IPart): void {
-    const partName = this.computerComponentNames.find(x => x.longName === item.part).shortName;
-
-    this.router.navigate([`build/add/${partName.toLocaleLowerCase()}`]);
+  private drawTable(computer: IComputerDto): void {
+    const components = ComputerMapper.toPartList(this.computerComponentNames, computer);
+    this.dataSource = new MatTableDataSource(components);
+    this.dataSource.sort = this.sort;
+    this.totalPrice = this.getTotalPrice();
   }
 }

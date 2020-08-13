@@ -1,69 +1,95 @@
-import { IComputerComponentNameDto, IComputerDto, IPart } from 'src/app/models/computer.interfaces';
+import { IComputerComponentNameDto, IComputerDto, IPart, IComputerComponentDto } from 'src/app/models/computer.interfaces';
+import { ComputerComponentName } from 'src/app/models/computer.models';
 
 // tslint:disable-next-line: no-namespace
 export namespace ComputerMapper {
 
   export function toPartList(componentNames: IComputerComponentNameDto[], computer: IComputerDto): IPart[] {
-    if (computer === null) {
-      const parts: IPart[] = componentNames.map(component => {
-        return {
-          part: component.longName,
-          selectedPart: '',
-          price: 0
-        };
-      });
-
-      return parts;
+    if (computer === null || computer === undefined) {
+      return getFromSessionOrSetEmpty(componentNames);
     }
 
-    const cpu: IPart = {
-      part: componentNames.find(x => x.shortName === computer.cpu.computerComponentName).longName,
-      selectedPart: computer.cpu.name,
-      price: computer.cpu.price
-    };
-
-    const gpu: IPart = {
-      part: componentNames.find(x => x.shortName === computer.gpu.computerComponentName).longName,
-      selectedPart: computer.gpu.name,
-      price: computer.gpu.price
-    };
-
-    const ram: IPart = {
-      part: componentNames.find(x => x.shortName === computer.ram.computerComponentName).longName,
-      selectedPart: computer.ram.name,
-      price: computer.ram.price
-    };
-
-    const pcCase: IPart = {
-      part: componentNames.find(x => x.shortName === computer.pcCase.computerComponentName).longName,
-      selectedPart: computer.pcCase.name,
-      price: computer.pcCase.price
-    };
-
-    const cooling: IPart = {
-      part: componentNames.find(x => x.shortName === computer.cooling.computerComponentName).longName,
-      selectedPart: computer.cooling.name,
-      price: computer.cooling.price
-    };
-
-    const motherboard: IPart = {
-      part: componentNames.find(x => x.shortName === computer.motherboard.computerComponentName).longName,
-      selectedPart: computer.motherboard.name,
-      price: computer.motherboard.price
-    };
-
-    const psu: IPart = {
-      part: componentNames.find(x => x.shortName === computer.psu.computerComponentName).longName,
-      selectedPart: computer.psu.name,
-      price: computer.psu.price
-    };
-
-    const storage: IPart = {
-      part: componentNames.find(x => x.shortName === computer.storage.computerComponentName).longName,
-      selectedPart: computer.storage.name,
-      price: computer.storage.price
-    };
+    const cpu = fillPartFromComputerAndSetStorage(componentNames, computer.cpu);
+    const gpu = fillPartFromComputerAndSetStorage(componentNames, computer.gpu);
+    const ram = fillPartFromComputerAndSetStorage(componentNames, computer.ram);
+    const pcCase = fillPartFromComputerAndSetStorage(componentNames, computer.pcCase);
+    const motherboard = fillPartFromComputerAndSetStorage(componentNames, computer.motherboard);
+    const storage = fillPartFromComputerAndSetStorage(componentNames, computer.storage);
+    const cooling = fillPartFromComputerAndSetStorage(componentNames, computer.cooling);
+    const psu = fillPartFromComputerAndSetStorage(componentNames, computer.psu);
 
     return Array.of(cpu, gpu, ram, pcCase, cooling, motherboard, psu, storage);
+  }
+
+  function getFromSessionOrSetEmpty(componentNames: IComputerComponentNameDto[]): IPart[] {
+    // const cpu = JSON.parse(localStorage.getItem(ComputerComponentName.CPU.shortName)) ?
+    //   JSON.parse(localStorage.getItem(ComputerComponentName.CPU.shortName)) :
+    //   emptyPart(componentNames.find(c => c.shortName === ComputerComponentName.CPU.shortName));
+
+    // const gpu = JSON.parse(localStorage.getItem(ComputerComponentName.GPU.shortName)) ?
+    //   JSON.parse(localStorage.getItem(ComputerComponentName.GPU.shortName)) :
+    //   emptyPart(componentNames.find(c => c.shortName === ComputerComponentName.GPU.shortName));
+
+    // const ram = JSON.parse(localStorage.getItem(ComputerComponentName.RAM.shortName)) ?
+    //   JSON.parse(localStorage.getItem(ComputerComponentName.RAM.shortName)) :
+    //   emptyPart(componentNames.find(c => c.shortName === ComputerComponentName.RAM.shortName));
+
+    // const pcCase = JSON.parse(localStorage.getItem(ComputerComponentName.Case.shortName)) ?
+    //   JSON.parse(localStorage.getItem(ComputerComponentName.Case.shortName)) :
+    //   emptyPart(componentNames.find(c => c.shortName === ComputerComponentName.Case.shortName));
+
+    // const cooling = JSON.parse(localStorage.getItem(ComputerComponentName.Cooling.shortName)) ?
+    //   JSON.parse(localStorage.getItem(ComputerComponentName.Cooling.shortName)) :
+    //   emptyPart(componentNames.find(c => c.shortName === ComputerComponentName.Cooling.shortName));
+
+    // const motherboard = JSON.parse(localStorage.getItem(ComputerComponentName.Motherboard.shortName)) ?
+    //   JSON.parse(localStorage.getItem(ComputerComponentName.Motherboard.shortName)) :
+    //   emptyPart(componentNames.find(c => c.shortName === ComputerComponentName.Motherboard.shortName));
+
+    // const psu = JSON.parse(localStorage.getItem(ComputerComponentName.PSU.shortName)) ?
+    //   JSON.parse(localStorage.getItem(ComputerComponentName.PSU.shortName)) :
+    //   emptyPart(componentNames.find(c => c.shortName === ComputerComponentName.PSU.shortName));
+
+    // const storage = JSON.parse(localStorage.getItem(ComputerComponentName.Storage.shortName)) ?
+    //   JSON.parse(localStorage.getItem(ComputerComponentName.Storage.shortName)) :
+    //   emptyPart(componentNames.find(c => c.shortName === ComputerComponentName.Storage.shortName));
+
+    const cpu = fillPartFromStorage(componentNames, ComputerComponentName.CPU);
+    const gpu = fillPartFromStorage(componentNames, ComputerComponentName.GPU);
+    const ram = fillPartFromStorage(componentNames, ComputerComponentName.RAM);
+    const storage = fillPartFromStorage(componentNames, ComputerComponentName.Storage);
+    const motherboard = fillPartFromStorage(componentNames, ComputerComponentName.Motherboard);
+    const pcCase = fillPartFromStorage(componentNames, ComputerComponentName.Case);
+    const cooling = fillPartFromStorage(componentNames, ComputerComponentName.Cooling);
+    const psu = fillPartFromStorage(componentNames, ComputerComponentName.PSU);
+
+    return Array.of(cpu, gpu, ram, pcCase, cooling, motherboard, psu, storage);
+  }
+
+  function emptyPart(part: IComputerComponentNameDto): IPart {
+    return {
+      part: part.longName,
+      selectedPart: '',
+      price: 0
+    };
+  }
+
+  function fillPartFromComputerAndSetStorage(componentNames: IComputerComponentNameDto[], part: IComputerComponentDto): IPart {
+    const partName = componentNames.find(x => x.shortName === part.computerComponentName);
+    const computerPart: IPart = {
+      part: partName.longName,
+      selectedPart: part.name,
+      price: part.price
+    };
+    sessionStorage.setItem(partName.shortName, JSON.stringify(computerPart));
+
+    return computerPart;
+  }
+
+  function fillPartFromStorage(componentNames: IComputerComponentNameDto[], part: ComputerComponentName): IPart {
+    const itemFromStorage: IPart = JSON.parse(sessionStorage.getItem(part.shortName));
+    return itemFromStorage ?
+             itemFromStorage :
+             emptyPart(componentNames.find(c => c.shortName === part.shortName));
   }
 }

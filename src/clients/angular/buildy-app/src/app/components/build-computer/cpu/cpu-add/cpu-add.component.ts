@@ -7,6 +7,9 @@ import { CpuService } from 'src/app/services/cpu/cpu.service';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data/data.service';
+import { IPart } from 'src/app/models/computer.interfaces';
+import { ComputerComponentName } from 'src/app/models/computer.models';
 
 @Component({
   selector: 'app-cpu-add',
@@ -23,7 +26,8 @@ export class CpuAddComponent extends DestroyBaseComponent implements OnInit {
 
   constructor(
     private cpuService: CpuService,
-    private router: Router
+    private router: Router,
+    private dataService: DataService
   ) {
     super();
   }
@@ -53,6 +57,16 @@ export class CpuAddComponent extends DestroyBaseComponent implements OnInit {
   }
 
   public addToMyComputer(partUid: string): void {
+    const cpu = this.cpus.find(c => c.uid === partUid);
 
+    const part: IPart = {
+      part: ComputerComponentName.CPU.longName,
+      selectedPart: cpu.name,
+      price: cpu.price
+    };
+    sessionStorage.setItem(ComputerComponentName.CPU.shortName, JSON.stringify(part));
+    this.dataService.changeCpu(part);
+
+    this.router.navigate(['build']);
   }
 }
