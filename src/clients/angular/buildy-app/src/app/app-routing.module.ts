@@ -6,12 +6,14 @@ import { HomeComponent } from './components/home/home.component';
 import { BuildComponent } from './components/build-form/build.component';
 import { CpuAddComponent } from './components/build-computer/cpu/cpu-add/cpu-add.component';
 import { GpuAddComponent } from './components/build-computer/gpu/gpu-add/gpu-add.component';
+import { RamAddComponent } from './components/build-computer/ram/ram-add/ram-add.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'build/add/cpu', component: CpuAddComponent },
   { path: 'build/add/gpu', component: GpuAddComponent },
+  { path: 'build/add/ram', component: RamAddComponent },
   { path: 'build/:id', component: BuildComponent },
   { path: 'build', component: BuildComponent },
   { path: 'about', component: AboutComponent },

@@ -27,6 +27,7 @@ import { BuildComponent } from './components/build-form/build.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CpuAddComponent } from './components/build-computer/cpu/cpu-add/cpu-add.component';
 import { GpuAddComponent } from './components/build-computer/gpu/gpu-add/gpu-add.component';
+import { RamAddComponent } from './components/build-computer/ram/ram-add/ram-add.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { GpuAddComponent } from './components/build-computer/gpu/gpu-add/gpu-add
     HomeComponent,
     BuildComponent,
     CpuAddComponent,
-    GpuAddComponent
+    GpuAddComponent,
+    RamAddComponent
   ],
   imports: [
     BrowserModule,
