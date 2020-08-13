@@ -2,7 +2,7 @@ package com.mk.ukim.finki.wp.buildy.model.enumeration;
 
 public enum ComputerComponentName {
     CPU("Processor"),
-    GPU("Graphics Card"),
+    GPU("Graphics card"),
     RAM("RAM"),
     Case("Case"),
     Cooling("Cooling Fan"),

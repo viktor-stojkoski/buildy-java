@@ -26,6 +26,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BuildComponent } from './components/build-form/build.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CpuAddComponent } from './components/build-computer/cpu/cpu-add/cpu-add.component';
+import { GpuAddComponent } from './components/build-computer/gpu/gpu-add/gpu-add.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CpuAddComponent } from './components/build-computer/cpu/cpu-add/cpu-add
     ContactComponent,
     HomeComponent,
     BuildComponent,
-    CpuAddComponent
+    CpuAddComponent,
+    GpuAddComponent
   ],
   imports: [
     BrowserModule,
