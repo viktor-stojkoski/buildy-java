@@ -64,6 +64,16 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
     this.router.navigate([`build/add/${partName}`]);
   }
 
+  public removePart(item: IPart): void {
+    const partName = this.computerComponentNames
+      .find(x => x.longName === item.part)
+      .shortName;
+
+    sessionStorage.removeItem(partName);
+
+    this.drawTable(null);
+  }
+
   private getTotalPrice(): number {
     return this.dataSource?.data ?
       this.dataSource.data
