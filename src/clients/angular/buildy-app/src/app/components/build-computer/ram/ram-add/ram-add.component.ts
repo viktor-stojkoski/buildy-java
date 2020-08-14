@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ComputerComponentName } from 'src/app/models/computer.models';
 import { IRamDto } from 'src/app/models/ram.interfaces';
 import { RamService } from 'src/app/services/ram/ram.service';
+import { IPart } from 'src/app/models/computer.interfaces';
 
 @Component({
   selector: 'app-cpu-add',

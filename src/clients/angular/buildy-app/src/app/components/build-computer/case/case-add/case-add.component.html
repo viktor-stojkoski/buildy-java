@@ -1,0 +1,77 @@
+<div class="container">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. H500" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Image Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
+        <td mat-cell *matCellDef="let row">
+          <img [src]="row.imageUrl" class="image" alt="ram" />
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+      </ng-container>
+
+      <!-- Manufacturer Column -->
+      <ng-container matColumnDef="manufacturer">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Manufacturer </th>
+        <td mat-cell *matCellDef="let row"> {{ row.manufacturerName }} </td>
+      </ng-container>
+
+      <!-- Dimensions Column -->
+      <ng-container matColumnDef="dimensions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dimensions </th>
+        <td mat-cell *matCellDef="let row">
+          W: {{ row.width }}
+          H: {{ row.height }}
+          D: {{ row.depth }}
+        </td>
+      </ng-container>
+
+      <!-- Fans Supported Column -->
+      <ng-container matColumnDef="fansSupported">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fans Supported </th>
+        <td mat-cell *matCellDef="let row"> {{ row.numberOfFansSupported }} </td>
+      </ng-container>
+
+      <!-- Motherboard type Column -->
+      <ng-container matColumnDef="motherboardType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Motherboard type </th>
+        <td mat-cell *matCellDef="let row"> {{ row.motherboardType }} </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+        <td mat-cell *matCellDef="let row"> {{ row.price | currency }} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-button color="success" (click)="addToMyComputer(row.uid)"> Add </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
