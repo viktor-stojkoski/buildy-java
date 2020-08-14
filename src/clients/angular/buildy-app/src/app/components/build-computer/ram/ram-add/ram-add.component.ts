@@ -11,7 +11,7 @@ import { RamService } from 'src/app/services/ram/ram.service';
 import { IPart } from 'src/app/models/computer.interfaces';
 
 @Component({
-  selector: 'app-cpu-add',
+  selector: 'app-ram-add',
   templateUrl: './ram-add.component.html',
   styleUrls: ['./ram-add.component.scss']
 })

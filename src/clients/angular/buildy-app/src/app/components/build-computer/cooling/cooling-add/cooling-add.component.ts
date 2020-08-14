@@ -5,39 +5,39 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { ICaseDto } from 'src/app/models/case.interfaces';
 import { IPart } from 'src/app/models/computer.interfaces';
 import { ComputerComponentName } from 'src/app/models/computer.models';
-import { CaseService } from 'src/app/services/case/case.service';
+import { ICoolingDto } from 'src/app/models/cooling.interfaces';
+import { CoolingService } from 'src/app/services/cooling/cooling.service';
 
 @Component({
-  selector: 'app-case-add',
-  templateUrl: './case-add.component.html',
-  styleUrls: ['./case-add.component.scss']
+  selector: 'app-cooling-add',
+  templateUrl: './cooling-add.component.html',
+  styleUrls: ['./cooling-add.component.scss']
 })
-export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
-  public displayedColumns = ['image', 'name', 'manufacturer', 'dimensions', 'fansSupported', 'motherboardType', 'price', 'actions'];
-  public dataSource: MatTableDataSource<ICaseDto>;
-  public cases: ICaseDto[];
+export class CoolingAddComponent extends DestroyBaseComponent implements OnInit {
+  public displayedColumns: string[] = ['image', 'name', 'manufacturer', 'size', 'speed', 'coolingType', 'rgb', 'price', 'actions'];
+  public dataSource: MatTableDataSource<ICoolingDto>;
+  public coolings: ICoolingDto[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
-    private caseService: CaseService,
+    private coolingService: CoolingService,
     private router: Router
   ) {
     super();
   }
 
   ngOnInit() {
-    this.caseService
-      .getCases()
+    this.coolingService
+      .getCoolings()
       .pipe(takeUntil(this.destroyed))
       .subscribe({
-        next: cases => {
-          this.cases = cases;
-          this.dataSource = new MatTableDataSource(cases);
+        next: coolings => {
+          this.coolings = coolings;
+          this.dataSource = new MatTableDataSource(coolings);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
@@ -55,14 +55,14 @@ export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
   }
 
   public addToMyComputer(partUid: string): void {
-    const pcCase = this.cases.find(r => r.uid === partUid);
+    const coolings = this.coolings.find(r => r.uid === partUid);
 
     const part: IPart = {
-      part: ComputerComponentName.Case.longName,
-      selectedPart: pcCase.name,
-      price: pcCase.price
+      part: ComputerComponentName.Cooling.longName,
+      selectedPart: coolings.name,
+      price: coolings.price
     };
-    sessionStorage.setItem(ComputerComponentName.Case.shortName, JSON.stringify(part));
+    sessionStorage.setItem(ComputerComponentName.Cooling.shortName, JSON.stringify(part));
 
     this.router.navigate(['build']);
   }
