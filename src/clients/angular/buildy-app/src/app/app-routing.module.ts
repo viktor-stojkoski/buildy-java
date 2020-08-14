@@ -9,6 +9,7 @@ import { GpuAddComponent } from './components/build-computer/gpu/gpu-add/gpu-add
 import { RamAddComponent } from './components/build-computer/ram/ram-add/ram-add.component';
 import { CaseAddComponent } from './components/build-computer/case/case-add/case-add.component';
 import { CoolingAddComponent } from './components/build-computer/cooling/cooling-add/cooling-add.component';
+import { MotherboardAddComponent } from './components/build-computer/motherboard/motherboard-add/motherboard-add.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'build/add/ram', component: RamAddComponent },
   { path: 'build/add/case', component: CaseAddComponent },
   { path: 'build/add/cooling', component: CoolingAddComponent },
+  { path: 'build/add/motherboard', component: MotherboardAddComponent },
   { path: 'build/:id', component: BuildComponent },
   { path: 'build', component: BuildComponent },
   { path: 'about', component: AboutComponent },

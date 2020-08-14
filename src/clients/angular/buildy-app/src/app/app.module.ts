@@ -30,6 +30,7 @@ import { GpuAddComponent } from './components/build-computer/gpu/gpu-add/gpu-add
 import { RamAddComponent } from './components/build-computer/ram/ram-add/ram-add.component';
 import { CaseAddComponent } from './components/build-computer/case/case-add/case-add.component';
 import { CoolingAddComponent } from './components/build-computer/cooling/cooling-add/cooling-add.component';
+import { MotherboardAddComponent } from './components/build-computer/motherboard/motherboard-add/motherboard-add.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CoolingAddComponent } from './components/build-computer/cooling/cooling
     GpuAddComponent,
     RamAddComponent,
     CaseAddComponent,
-    CoolingAddComponent
+    CoolingAddComponent,
+    MotherboardAddComponent
   ],
   imports: [
     BrowserModule,
