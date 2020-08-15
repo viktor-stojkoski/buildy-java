@@ -16,18 +16,25 @@ import { StorageAddComponent } from './components/build-computer/storage/storage
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'build/add/cpu', component: CpuAddComponent },
-  { path: 'build/add/gpu', component: GpuAddComponent },
-  { path: 'build/add/ram', component: RamAddComponent },
-  { path: 'build/add/case', component: CaseAddComponent },
-  { path: 'build/add/cooling', component: CoolingAddComponent },
-  { path: 'build/add/motherboard', component: MotherboardAddComponent },
-  { path: 'build/add/psu', component: PsuAddComponent },
-  { path: 'build/add/storage', component: StorageAddComponent },
+  {
+    path: 'build/add',
+    children: [
+      { path: 'cpu', component: CpuAddComponent },
+      { path: 'cpu', component: CpuAddComponent },
+      { path: 'gpu', component: GpuAddComponent },
+      { path: 'ram', component: RamAddComponent },
+      { path: 'case', component: CaseAddComponent },
+      { path: 'cooling', component: CoolingAddComponent },
+      { path: 'motherboard', component: MotherboardAddComponent },
+      { path: 'psu', component: PsuAddComponent },
+      { path: 'storage', component: StorageAddComponent },
+    ]
+  },
   { path: 'build/:id', component: BuildComponent },
   { path: 'build', component: BuildComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
