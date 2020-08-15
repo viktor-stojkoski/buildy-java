@@ -24,7 +24,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { BuildComponent } from './components/build-form/build.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CpuAddComponent } from './components/build-computer/cpu/cpu-add/cpu-add.component';
 import { GpuAddComponent } from './components/build-computer/gpu/gpu-add/gpu-add.component';
 import { RamAddComponent } from './components/build-computer/ram/ram-add/ram-add.component';
@@ -33,6 +33,9 @@ import { CoolingAddComponent } from './components/build-computer/cooling/cooling
 import { MotherboardAddComponent } from './components/build-computer/motherboard/motherboard-add/motherboard-add.component';
 import { PsuAddComponent } from './components/build-computer/psu/psu-add/psu-add.component';
 import { StorageAddComponent } from './components/build-computer/storage/storage-add/storage-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { StorageAddComponent } from './components/build-computer/storage/storage
     CoolingAddComponent,
     MotherboardAddComponent,
     PsuAddComponent,
-    StorageAddComponent
+    StorageAddComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,13 @@ import { StorageAddComponent } from './components/build-computer/storage/storage
     MatProgressSpinnerModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

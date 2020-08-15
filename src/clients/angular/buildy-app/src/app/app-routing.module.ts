@@ -12,6 +12,8 @@ import { CoolingAddComponent } from './components/build-computer/cooling/cooling
 import { MotherboardAddComponent } from './components/build-computer/motherboard/motherboard-add/motherboard-add.component';
 import { PsuAddComponent } from './components/build-computer/psu/psu-add/psu-add.component';
 import { StorageAddComponent } from './components/build-computer/storage/storage-add/storage-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 const routes: Routes = [
@@ -34,6 +36,8 @@ const routes: Routes = [
   { path: 'build', component: BuildComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: '**', component: HomeComponent }
 ];
 

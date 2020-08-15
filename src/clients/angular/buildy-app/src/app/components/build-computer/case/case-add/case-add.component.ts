@@ -4,11 +4,11 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { ICaseDto } from 'src/app/models/case.interfaces';
-import { IPart } from 'src/app/models/computer.interfaces';
-import { ComputerComponentName } from 'src/app/models/computer.models';
-import { CaseService } from 'src/app/services/case/case.service';
+import { DestroyBaseComponent } from '../../../../helpers/components/destroy-base.component';
+import { ICaseDto } from '../../../../models/case.interfaces';
+import { IPart } from '../../../../models/computer.interfaces';
+import { ComputerComponentName } from '../../../../models/computer.models';
+import { CaseService } from '../../../../services/case/case.service';
 
 @Component({
   selector: 'app-case-add',

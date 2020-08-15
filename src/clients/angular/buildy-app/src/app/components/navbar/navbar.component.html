@@ -9,7 +9,7 @@
 
     <div fxShow="true" fxHide.lt-md>
       <a mat-button [routerLink]="''"> What is Buildy? </a>
-      <a mat-button [routerLink]="'/build'" routerLinkActive="mat-accent"> Build a computer </a>
+      <a mat-button *ngIf="isAuthenticated" [routerLink]="'/build'" routerLinkActive="mat-accent"> Build a computer </a>
       <a mat-button [routerLink]="'/about'" routerLinkActive="mat-accent"> About </a>
       <a mat-button [routerLink]="'/contact'" routerLinkActive="mat-accent"> Contact </a>
     </div>
@@ -17,8 +17,9 @@
     <span class="menu-spacer"></span>
 
     <div fxShow="true" fxHide.lt-md>
-      <a mat-button [routerLink]="'/register'" routerLinkActive="mat-accent"> Register </a>
-      <a mat-button [routerLink]="'/login'" routerLinkActive="mat-accent"> Log in </a>
+      <a mat-button *ngIf="!isAuthenticated" [routerLink]="'/register'" routerLinkActive="mat-accent"> Register </a>
+      <a mat-button *ngIf="!isAuthenticated" [routerLink]="'/login'" routerLinkActive="mat-accent"> Log in </a>
+      <a mat-button *ngIf="isAuthenticated" (click)="logout()"> Log out </a>
     </div>
   </mat-toolbar-row>
 
