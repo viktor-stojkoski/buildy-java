@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { ComputerService } from 'src/app/services/computers/computer.service';
-import { IComputerComponentNameDto, IPart, IComputerDto } from 'src/app/models/computer.interfaces';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { switchMap, takeUntil, tap, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, iif, of } from 'rxjs';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { ComputerMapper } from 'src/app/helpers/mappers/computer.mapper';
+import { IComputerComponentNameDto, IComputerDto, IPart } from 'src/app/models/computer.interfaces';
+import { ComputerService } from 'src/app/services/computer/computer.service';
 
 @Component({
   selector: 'app-build',

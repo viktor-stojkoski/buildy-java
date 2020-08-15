@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
-import { BaseApiService } from '../base/base-api.service';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IComputerComponentNameDto, IComputerDto } from 'src/app/models/computer.interfaces';
+
+import { BaseApiService } from '../base/base-api.service';
 
 @Injectable({
   providedIn: 'root'

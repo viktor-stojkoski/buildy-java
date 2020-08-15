@@ -1,11 +1,6 @@
-import { BaseDto } from './base.interfaces';
+import { BaseComputerComponentDto } from './base.interfaces';
 
-export interface ICpuDto extends BaseDto {
-  id: number;
-  uid: string;
-  imageUrl: string;
-  name: string;
-  price: number;
+export interface ICpuDto extends BaseComputerComponentDto {
   manufacturerName: string;
   socketName: string;
   cores: number;

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BaseApiService } from '../base/base-api.service';
 import { ICoolingDto } from 'src/app/models/cooling.interfaces';
+
+import { BaseApiService } from '../base/base-api.service';
 
 @Injectable({
   providedIn: 'root'

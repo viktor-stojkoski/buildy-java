@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ICpuDto } from 'src/app/models/cpu.interfaces';
-import { CpuService } from 'src/app/services/cpu/cpu.service';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { takeUntil } from 'rxjs/operators';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { IPart } from 'src/app/models/computer.interfaces';
 import { ComputerComponentName } from 'src/app/models/computer.models';
 import { IGpuDto } from 'src/app/models/gpu.interfaces';

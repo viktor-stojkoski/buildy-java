@@ -1,15 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ICpuDto } from 'src/app/models/cpu.interfaces';
-import { CpuService } from 'src/app/services/cpu/cpu.service';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { takeUntil } from 'rxjs/operators';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/data/data.service';
+import { takeUntil } from 'rxjs/operators';
+import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { IPart } from 'src/app/models/computer.interfaces';
 import { ComputerComponentName } from 'src/app/models/computer.models';
+import { ICpuDto } from 'src/app/models/cpu.interfaces';
+import { CpuService } from 'src/app/services/cpu/cpu.service';
 
 @Component({
   selector: 'app-cpu-add',
@@ -26,8 +25,7 @@ export class CpuAddComponent extends DestroyBaseComponent implements OnInit {
 
   constructor(
     private cpuService: CpuService,
-    private router: Router,
-    private dataService: DataService
+    private router: Router
   ) {
     super();
   }
@@ -65,7 +63,6 @@ export class CpuAddComponent extends DestroyBaseComponent implements OnInit {
       price: cpu.price
     };
     sessionStorage.setItem(ComputerComponentName.CPU.shortName, JSON.stringify(part));
-    this.dataService.changeCpu(part);
 
     this.router.navigate(['build']);
   }

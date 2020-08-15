@@ -54,14 +54,14 @@
       <!-- Cache Column -->
       <ng-container matColumnDef="cache">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Cache </th>
-        <td mat-cell *matCellDef="let row"> {{ row.cache }} MB</td>
+        <td mat-cell *matCellDef="let row"> {{ row.cache }} MB </td>
       </ng-container>
 
       <!-- Cooling Column -->
       <ng-container matColumnDef="cooling">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Cooling </th>
         <td mat-cell *matCellDef="let row">
-          <mat-icon>{{ row.coolingSolution ? 'done' : 'close' }}</mat-icon>
+          <mat-icon> {{ row.coolingSolution ? 'done' : 'close' }} </mat-icon>
         </td>
       </ng-container>
 

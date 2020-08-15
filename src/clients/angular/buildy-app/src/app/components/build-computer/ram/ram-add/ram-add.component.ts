@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { takeUntil } from 'rxjs/operators';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
+import { IPart } from 'src/app/models/computer.interfaces';
 import { ComputerComponentName } from 'src/app/models/computer.models';
 import { IRamDto } from 'src/app/models/ram.interfaces';
 import { RamService } from 'src/app/services/ram/ram.service';
-import { IPart } from 'src/app/models/computer.interfaces';
 
 @Component({
   selector: 'app-ram-add',

@@ -37,7 +37,6 @@ export class MotherboardAddComponent extends DestroyBaseComponent implements OnI
       .subscribe({
         next: motherboards => {
           this.motherboards = motherboards;
-          console.log(motherboards);
           this.dataSource = new MatTableDataSource(motherboards);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
