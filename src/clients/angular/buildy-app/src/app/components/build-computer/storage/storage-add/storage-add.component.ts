@@ -7,38 +7,37 @@ import { takeUntil } from 'rxjs/operators';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { IPart } from 'src/app/models/computer.interfaces';
 import { ComputerComponentName } from 'src/app/models/computer.models';
-import { IMotherboardDto } from 'src/app/models/motherboard.interfaces';
-import { MotherboardService } from 'src/app/services/motherboard/motherboard.service';
+import { IStorageDto } from 'src/app/models/storage.interfaces';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
-  selector: 'app-motherboard-add',
-  templateUrl: './motherboard-add.component.html',
-  styleUrls: ['./motherboard-add.component.scss']
+  selector: 'app-storage-add',
+  templateUrl: './storage-add.component.html',
+  styleUrls: ['./storage-add.component.scss']
 })
-export class MotherboardAddComponent extends DestroyBaseComponent implements OnInit {
-  public displayedColumns = ['image', 'name', 'manufacturer', 'motherboardType', 'socket', 'memorySupported', 'dimmSlots', 'price', 'actions'];
-  public dataSource: MatTableDataSource<IMotherboardDto>;
-  public motherboards: IMotherboardDto[];
+export class StorageAddComponent extends DestroyBaseComponent implements OnInit {
+  public displayedColumns: string[] = ['image', 'name', 'manufacturer', 'storageType', 'capacity', 'readingSpeed', 'writingSpeed', 'price', 'actions'];
+  public dataSource: MatTableDataSource<IStorageDto>;
+  public storages: IStorageDto[];
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
-    private motherboardService: MotherboardService,
+    private storageService: StorageService,
     private router: Router
   ) {
     super();
   }
 
   ngOnInit() {
-    this.motherboardService
-      .getMotherboards()
+    this.storageService
+      .getStorages()
       .pipe(takeUntil(this.destroyed))
       .subscribe({
-        next: motherboards => {
-          this.motherboards = motherboards;
-          console.log(motherboards);
-          this.dataSource = new MatTableDataSource(motherboards);
+        next: storages => {
+          this.storages = storages;
+          this.dataSource = new MatTableDataSource(storages);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
@@ -56,14 +55,14 @@ export class MotherboardAddComponent extends DestroyBaseComponent implements OnI
   }
 
   public addToMyComputer(partUid: string): void {
-    const motherboard = this.motherboards.find(r => r.uid === partUid);
+    const storage = this.storages.find(r => r.uid === partUid);
 
     const part: IPart = {
-      part: ComputerComponentName.Motherboard.longName,
-      selectedPart: motherboard.name,
-      price: motherboard.price
+      part: ComputerComponentName.Storage.longName,
+      selectedPart: storage .name,
+      price: storage .price
     };
-    sessionStorage.setItem(ComputerComponentName.Motherboard.shortName, JSON.stringify(part));
+    sessionStorage.setItem(ComputerComponentName.Storage.shortName, JSON.stringify(part));
 
     this.router.navigate(['build']);
   }

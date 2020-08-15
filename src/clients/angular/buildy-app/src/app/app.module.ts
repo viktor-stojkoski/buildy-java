@@ -32,6 +32,7 @@ import { CaseAddComponent } from './components/build-computer/case/case-add/case
 import { CoolingAddComponent } from './components/build-computer/cooling/cooling-add/cooling-add.component';
 import { MotherboardAddComponent } from './components/build-computer/motherboard/motherboard-add/motherboard-add.component';
 import { PsuAddComponent } from './components/build-computer/psu/psu-add/psu-add.component';
+import { StorageAddComponent } from './components/build-computer/storage/storage-add/storage-add.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PsuAddComponent } from './components/build-computer/psu/psu-add/psu-add
     CaseAddComponent,
     CoolingAddComponent,
     MotherboardAddComponent,
-    PsuAddComponent
+    PsuAddComponent,
+    StorageAddComponent
   ],
   imports: [
     BrowserModule,
