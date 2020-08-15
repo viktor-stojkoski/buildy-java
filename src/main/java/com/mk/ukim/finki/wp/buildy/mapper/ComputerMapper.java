@@ -1,4 +1,4 @@
-package com.mk.ukim.finki.wp.buildy.mapper.computer;
+package com.mk.ukim.finki.wp.buildy.mapper;
 
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerComponentDto;
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerComponentNameDto;

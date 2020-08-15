@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { ComputersService } from 'src/app/services/computers/computers.service';
-import { IComputerComponentNameDto, IPart } from 'src/app/models/computer.interfaces';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { switchMap, takeUntil, tap } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, iif, of } from 'rxjs';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
+import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { ComputerMapper } from 'src/app/helpers/mappers/computer.mapper';
+import { IComputerComponentNameDto, IComputerDto, IPart } from 'src/app/models/computer.interfaces';
+import { ComputerService } from 'src/app/services/computer/computer.service';
 
 @Component({
   selector: 'app-build',
@@ -23,12 +23,12 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
   public displayedColumns = ['part', 'selectedPart', 'price', 'actions'];
   public dataSource: MatTableDataSource<IPart>;
 
-
   @ViewChild(MatSort, {static: true}) public sort: MatSort;
 
   constructor(
-    private computerService: ComputersService,
-    private route: ActivatedRoute) {
+    private computerService: ComputerService,
+    private route: ActivatedRoute,
+    private router: Router) {
     super();
   }
 
@@ -41,27 +41,51 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
           iif(
             () => !isNaN(this.computerId),
             this.computerService.getComputer(this.computerId),
-            of(null)),
+            of(null)
+          )
         ])),
         takeUntil(this.destroyed),
       )
       .subscribe({
         next: ([computerComponentNames, computer]) => {
           this.computerComponentNames = computerComponentNames;
-          const components = ComputerMapper.toPartList(computerComponentNames, computer);
-
-          this.dataSource = new MatTableDataSource(components);
-          this.dataSource.sort = this.sort;
-          this.totalPrice = this.getTotalPrice();
-        }
+          this.drawTable(computer);
+        },
+        error: error => console.error(error)
       });
   }
 
-  public getTotalPrice(): number {
+  public addOrEditItem(item: IPart): void {
+    const partName = this.computerComponentNames
+      .find(x => x.longName === item.part)
+      .shortName
+      .toLocaleLowerCase();
+
+    this.router.navigate([`build/add/${partName}`]);
+  }
+
+  public removePart(item: IPart): void {
+    const partName = this.computerComponentNames
+      .find(x => x.longName === item.part)
+      .shortName;
+
+    sessionStorage.removeItem(partName);
+
+    this.drawTable(null);
+  }
+
+  private getTotalPrice(): number {
     return this.dataSource?.data ?
       this.dataSource.data
         .map(data => data.price)
         .reduce((acc, value) => acc + value, 0)
       : 0;
+  }
+
+  private drawTable(computer: IComputerDto): void {
+    const components = ComputerMapper.toPartList(this.computerComponentNames, computer);
+    this.dataSource = new MatTableDataSource(components);
+    this.dataSource.sort = this.sort;
+    this.totalPrice = this.getTotalPrice();
   }
 }

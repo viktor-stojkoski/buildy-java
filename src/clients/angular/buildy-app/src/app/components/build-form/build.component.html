@@ -27,7 +27,19 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>  </th>
         <td mat-cell *matCellDef="let row">
-          <button mat-button mat-raised-button color="success">Add part</button>
+          <button mat-button mat-raised-button color="success" (click)="addOrEditItem(row)">
+            {{ row.selectedPart ? 'Change part' : 'Add part' }}
+          </button>
+
+          <button
+            *ngIf="row.selectedPart"
+            class="remove-button"
+            mat-button
+            mat-raised-button
+            color="warn"
+            (click)="removePart(row)">
+            Remove part
+          </button>
         </td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>

@@ -1,0 +1,85 @@
+<div class="container">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Radeon RX 580" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Image Column -->
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
+        <td mat-cell *matCellDef="let row">
+          <img [src]="row.imageUrl" class="image" alt="gpu" />
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+      </ng-container>
+
+      <!-- Manufacturer Column -->
+      <ng-container matColumnDef="manufacturer">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Manufacturer </th>
+        <td mat-cell *matCellDef="let row"> {{ row.manufacturerName }} </td>
+      </ng-container>
+
+      <!-- Gpu Memory Type Column -->
+      <ng-container matColumnDef="gpuMemoryType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Memory Type </th>
+        <td mat-cell *matCellDef="let row"> {{ row.gpuMemoryType }} </td>
+      </ng-container>
+
+      <!-- RAM Size Column -->
+      <ng-container matColumnDef="ramSize">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> RAM Size </th>
+        <td mat-cell *matCellDef="let row"> {{ row.ramSize }} GB </td>
+      </ng-container>
+
+      <!-- Timing Column -->
+      <ng-container matColumnDef="timing">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Timing </th>
+        <td mat-cell *matCellDef="let row"> {{ row.timing }} </td>
+      </ng-container>
+
+      <!-- Frequency Column -->
+      <ng-container matColumnDef="frequency">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Frequency </th>
+        <td mat-cell *matCellDef="let row"> {{ row.frequency }} MHz</td>
+      </ng-container>
+
+      <!-- Memory Clock Column -->
+      <ng-container matColumnDef="memoryClock">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Memory Clock </th>
+        <td mat-cell *matCellDef="let row"> {{ row.memoryClock }} MHz </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+        <td mat-cell *matCellDef="let row"> {{ row.price | currency }} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-button color="success" (click)="addToMyComputer(row.uid)"> Add </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

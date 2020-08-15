@@ -25,6 +25,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { BuildComponent } from './components/build-form/build.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CpuAddComponent } from './components/build-computer/cpu/cpu-add/cpu-add.component';
+import { GpuAddComponent } from './components/build-computer/gpu/gpu-add/gpu-add.component';
+import { RamAddComponent } from './components/build-computer/ram/ram-add/ram-add.component';
+import { CaseAddComponent } from './components/build-computer/case/case-add/case-add.component';
+import { CoolingAddComponent } from './components/build-computer/cooling/cooling-add/cooling-add.component';
+import { MotherboardAddComponent } from './components/build-computer/motherboard/motherboard-add/motherboard-add.component';
+import { PsuAddComponent } from './components/build-computer/psu/psu-add/psu-add.component';
+import { StorageAddComponent } from './components/build-computer/storage/storage-add/storage-add.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +42,15 @@ import { HttpClientModule } from '@angular/common/http';
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    BuildComponent
+    BuildComponent,
+    CpuAddComponent,
+    GpuAddComponent,
+    RamAddComponent,
+    CaseAddComponent,
+    CoolingAddComponent,
+    MotherboardAddComponent,
+    PsuAddComponent,
+    StorageAddComponent
   ],
   imports: [
     BrowserModule,
