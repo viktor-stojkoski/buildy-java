@@ -1,36 +1,39 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, of, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserRequest } from 'src/app/models/requests/user.requests';
 
 import { BaseApiService } from '../base/base-api.service';
+import { IRoleDto } from 'src/app/models/user.interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticatedSubject = new Subject<boolean>();
+  private isAuthenticatedSubject = new ReplaySubject<boolean>();
   private authRoute = 'auth';
   private CURRENT_USER = 'CURRENT_USER';
+  private TOKEN = 'TOKEN';
 
   constructor(
     private router: Router,
     private baseApiService: BaseApiService
   ) { }
 
-  public login(userRequest: UserRequest): Observable<any> {
+  public login(userRequest: UserRequest): Observable<IRoleDto> {
     const headers = new HttpHeaders({
       Authorization: this.createBasicAuthToken(userRequest),
       'Content-Type': 'application/json',
       Accept: 'application/json'
     });
-    return this.baseApiService.post<UserRequest>(`${this.authRoute}/login`, userRequest, headers)
+    return this.baseApiService.post<IRoleDto>(`${this.authRoute}/login`, userRequest, headers)
       .pipe(
         map(user => {
-          const currentUser = window.btoa(userRequest.username + ':' + userRequest.password);
-          sessionStorage.setItem(this.CURRENT_USER, JSON.stringify(currentUser));
+          const token = window.btoa(userRequest.username + ':' + userRequest.password);
+          sessionStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
+          sessionStorage.setItem(this.TOKEN, JSON.stringify(token));
           this.isAuthenticatedSubject.next(true);
           return user;
         }
@@ -39,16 +42,18 @@ export class AuthService {
 
   public logout(): void {
     sessionStorage.removeItem(this.CURRENT_USER);
+    sessionStorage.removeItem(this.TOKEN);
     this.isAuthenticatedSubject.next(false);
     this.router.navigate(['login']);
   }
 
   public loginStatusChanged(): Observable<boolean> {
+    this.isAuthenticatedSubject.next(this.isAuthenticated());
     return this.isAuthenticatedSubject.asObservable();
   }
 
   public isAuthenticated(): boolean {
-    const user = sessionStorage.getItem(this.CURRENT_USER);
+    const user = sessionStorage.getItem(this.TOKEN);
 
     if (user === null || user === undefined) {
       return false;
@@ -58,7 +63,7 @@ export class AuthService {
   }
 
   public getCurrentUserToken(): string {
-    const user = JSON.parse(sessionStorage.getItem(this.CURRENT_USER));
+    const user = JSON.parse(sessionStorage.getItem(this.TOKEN));
 
     return `Basic ${user}`;
   }

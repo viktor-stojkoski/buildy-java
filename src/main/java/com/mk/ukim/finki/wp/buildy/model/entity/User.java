@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "buildy_user")
+@Table(name = "`user`")
 public class User extends BaseEntity implements UserDetails {
 
     private String emailAddress;
@@ -120,5 +120,9 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setComputers(List<Computer> computers) {
         this.computers = computers;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
     }
 }

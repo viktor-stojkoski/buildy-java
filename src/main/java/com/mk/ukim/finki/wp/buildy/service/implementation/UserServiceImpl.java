@@ -1,5 +1,7 @@
 package com.mk.ukim.finki.wp.buildy.service.implementation;
 
+import com.mk.ukim.finki.wp.buildy.mapper.UserMapper;
+import com.mk.ukim.finki.wp.buildy.model.dto.UserDto;
 import com.mk.ukim.finki.wp.buildy.model.entity.User;
 import com.mk.ukim.finki.wp.buildy.model.exception.BuildyNotFoundException;
 import com.mk.ukim.finki.wp.buildy.model.exception.ErrorCodes;
@@ -19,20 +21,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User Login(UserRequest userRequest) {
+    public UserDto login(UserRequest userRequest) {
         User user = userRepository
                 .findUserByUsername(userRequest.username)
                 .orElseThrow(() -> new BuildyNotFoundException(ErrorCodes.USER_NOT_FOUND));
 
-        return user;
+        return UserMapper.toUserDto(user);
     }
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository
+        return userRepository
                 .findUserByUsername(username)
                 .orElseThrow(() -> new BuildyNotFoundException(ErrorCodes.USER_NOT_FOUND));
-
-        return user;
     }
 }

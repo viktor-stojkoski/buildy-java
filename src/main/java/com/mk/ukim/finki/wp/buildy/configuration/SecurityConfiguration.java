@@ -17,10 +17,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationProvider customAuthenticationProvider;
 
-//    public SecurityConfiguration(CustomAuthenticationProvider customAuthenticationProvider) {
-//        this.customAuthenticationProvider = customAuthenticationProvider;
-//    }
-
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http
@@ -61,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(this.customAuthenticationProvider);
     }
 

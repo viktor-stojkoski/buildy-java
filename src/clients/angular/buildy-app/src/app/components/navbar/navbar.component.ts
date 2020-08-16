@@ -19,7 +19,8 @@ export class NavbarComponent implements OnInit {
     .subscribe({
       next: result => {
         this.isAuthenticated = result;
-      }
+      },
+      error: error => console.error(error)
     });
   }
 

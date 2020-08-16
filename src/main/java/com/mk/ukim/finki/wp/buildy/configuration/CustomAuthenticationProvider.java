@@ -28,15 +28,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    public CustomAuthenticationProvider(PasswordEncoder passwordEncoder,
-//                                        UserRepository userRepository,
-//                                        UserDetailsService userDetailsService) {
-//        this.passwordEncoder = passwordEncoder;
-//        this.userRepository = userRepository;
-//        this.userDetailsService = userDetailsService;
-//    }
-
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
