@@ -11,7 +11,7 @@ import java.security.Principal;
 public class AuthController {
 
     @PostMapping("login")
-    public Principal login(Principal userRequest) {
+    public UserRequest login(@RequestBody UserRequest userRequest) {
 
         int i = 0;
 

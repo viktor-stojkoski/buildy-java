@@ -1,20 +1,19 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BaseApiService } from '../base/base-api.service';
-import { Observable } from 'rxjs';
+import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
 import { UserRequest } from 'src/app/models/requests/user.requests';
+
+import { BaseApiService } from '../base/base-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  private isAuthenticatedSubject = new Subject<boolean>();
   private authRoute = 'auth';
   private CURRENT_USER = 'CURRENT_USER';
-
-  public authToken: string;
 
   constructor(
     private router: Router,
@@ -32,15 +31,20 @@ export class AuthService {
         map(user => {
           const currentUser = window.btoa(userRequest.username + ':' + userRequest.password);
           sessionStorage.setItem(this.CURRENT_USER, JSON.stringify(currentUser));
-
+          this.isAuthenticatedSubject.next(true);
           return user;
         }
       ));
   }
 
   public logout(): void {
-    localStorage.removeItem(this.CURRENT_USER);
+    sessionStorage.removeItem(this.CURRENT_USER);
+    this.isAuthenticatedSubject.next(false);
     this.router.navigate(['login']);
+  }
+
+  public loginStatusChanged(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
   }
 
   public isAuthenticated(): boolean {
@@ -53,9 +57,14 @@ export class AuthService {
     return true;
   }
 
-  public createBasicAuthToken(userRequest: UserRequest): string {
+  public getCurrentUserToken(): string {
+    const user = JSON.parse(sessionStorage.getItem(this.CURRENT_USER));
+
+    return `Basic ${user}`;
+  }
+
+  private createBasicAuthToken(userRequest: UserRequest): string {
     const authToken = `Basic ${btoa(`${userRequest.username}:${userRequest.password}`)}`;
-    this.authToken = authToken;
 
     return authToken;
   }

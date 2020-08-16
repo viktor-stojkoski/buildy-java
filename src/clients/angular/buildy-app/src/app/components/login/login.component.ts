@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserRequest } from 'src/app/models/requests/user.requests';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
+import { UserRequest } from 'src/app/models/requests/user.requests';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,6 @@ export class LoginComponent extends DestroyBaseComponent implements OnInit, OnDe
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
   ) {
@@ -43,8 +42,8 @@ export class LoginComponent extends DestroyBaseComponent implements OnInit, OnDe
       this.authService
         .login(userRequest)
         .subscribe({
-          next: result => {
-            console.log(result);
+          next: () => {
+            this.router.navigate(['']);
           },
           error: error => console.error(error)
       });
