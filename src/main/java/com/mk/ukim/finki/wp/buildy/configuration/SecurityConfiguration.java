@@ -1,5 +1,6 @@
 package com.mk.ukim.finki.wp.buildy.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +13,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private CustomAuthenticationProvider customAuthenticationProvider;
+
+//    public SecurityConfiguration(CustomAuthenticationProvider customAuthenticationProvider) {
+//        this.customAuthenticationProvider = customAuthenticationProvider;
+//    }
 
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
@@ -54,10 +62,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user")
-                .password("{noop}user")
-                .roles("USER");
+        auth.authenticationProvider(this.customAuthenticationProvider);
     }
+
+    //    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .inMemoryAuthentication()
+//                .withUser("user")
+//                .password("{noop}user")
+//                .roles("USER");
+//    }
 }
