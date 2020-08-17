@@ -9,5 +9,5 @@ public interface ComputerService {
 
     List<ComputerComponentNameDto> getComputerComponentNames();
 
-    ComputerDto getComputerDto(Long id);
+    ComputerDto getOursComputerDto(Long id);
 }

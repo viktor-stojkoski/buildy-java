@@ -23,7 +23,7 @@ public class ComputersController {
         return computerService.getComputerComponentNames();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/ours/{id}")
     public ComputerDto getComputer(@PathVariable Long id) {
         return computerService.getComputerDto(id);
     }

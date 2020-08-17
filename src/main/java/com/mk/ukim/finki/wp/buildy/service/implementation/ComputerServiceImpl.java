@@ -12,6 +12,7 @@ import com.mk.ukim.finki.wp.buildy.service.ComputerService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -35,7 +36,11 @@ public class ComputerServiceImpl implements ComputerService {
     }
 
     @Override
-    public ComputerDto getComputerDto(Long id) {
+    public ComputerDto getOursComputerDto(Long id) {
+        if (Arrays.asList(computerRepository.ourComputerIds).contains(id)) {
+            throw new BuildyNotFoundException(ErrorCodes.COMPUTER_NOT_FOUND);
+        }
+
         Computer computer = computerRepository
                 .findById(id)
                 .orElseThrow(() -> new BuildyNotFoundException(ErrorCodes.COMPUTER_NOT_FOUND));
