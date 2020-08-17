@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/api/computers/component-names", "/api/computers/ours/**").permitAll()
+                .antMatchers("/api/computers/component-names", "/api/computers/ours/**", "/api/auth/register").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

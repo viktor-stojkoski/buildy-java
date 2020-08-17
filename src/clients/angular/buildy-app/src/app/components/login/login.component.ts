@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { UserRequest } from 'src/app/models/requests/user.requests';
+import { LoginRequest } from 'src/app/models/requests/user.requests';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -34,13 +34,13 @@ export class LoginComponent extends DestroyBaseComponent implements OnInit, OnDe
       const username = this.formGroup.controls.email.value;
       const password = this.formGroup.controls.password.value;
 
-      const userRequest: UserRequest = {
+      const loginRequest: LoginRequest = {
         username,
         password
       };
 
       this.authService
-        .login(userRequest)
+        .login(loginRequest)
         .subscribe({
           next: () => {
             this.router.navigate(['']);

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserRequest } from 'src/app/models/requests/user.requests';
+import { LoginRequest } from 'src/app/models/requests/user.requests';
 
 import { BaseApiService } from '../base/base-api.service';
 import { IRoleDto } from 'src/app/models/user.interfaces';
@@ -22,16 +22,16 @@ export class AuthService {
     private baseApiService: BaseApiService
   ) { }
 
-  public login(userRequest: UserRequest): Observable<IRoleDto> {
+  public login(loginRequest: LoginRequest): Observable<IRoleDto> {
     const headers = new HttpHeaders({
-      Authorization: this.createBasicAuthToken(userRequest),
+      Authorization: this.createBasicAuthToken(loginRequest),
       'Content-Type': 'application/json',
       Accept: 'application/json'
     });
-    return this.baseApiService.post<IRoleDto>(`${this.authRoute}/login`, userRequest, headers)
+    return this.baseApiService.post<IRoleDto>(`${this.authRoute}/login`, loginRequest, headers)
       .pipe(
         map(user => {
-          const token = window.btoa(userRequest.username + ':' + userRequest.password);
+          const token = window.btoa(loginRequest.username + ':' + loginRequest.password);
           sessionStorage.setItem(this.CURRENT_USER, JSON.stringify(user));
           sessionStorage.setItem(this.TOKEN, JSON.stringify(token));
           this.isAuthenticatedSubject.next(true);
@@ -68,7 +68,7 @@ export class AuthService {
     return `Basic ${user}`;
   }
 
-  private createBasicAuthToken(userRequest: UserRequest): string {
+  private createBasicAuthToken(userRequest: LoginRequest): string {
     const authToken = `Basic ${btoa(`${userRequest.username}:${userRequest.password}`)}`;
 
     return authToken;
