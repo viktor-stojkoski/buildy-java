@@ -40,7 +40,7 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
           this.computerService.getComputerComponentNames(),
           iif(
             () => !isNaN(this.computerId),
-            this.computerService.getComputer(this.computerId),
+            this.computerService.getOursComputer(this.computerId),
             of(null)
           )
         ])),

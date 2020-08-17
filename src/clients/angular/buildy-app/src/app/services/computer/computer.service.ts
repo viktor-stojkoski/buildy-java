@@ -17,7 +17,7 @@ export class ComputerService {
     return this.baseApiService.get<IComputerComponentNameDto[]>(`${this.computersApiRoute}/component-names`);
   }
 
-  public getComputer(id: number): Observable<IComputerDto> {
-    return this.baseApiService.get<IComputerDto>(`${this.computersApiRoute}/${id}`);
+  public getOursComputer(id: number): Observable<IComputerDto> {
+    return this.baseApiService.get<IComputerDto>(`${this.computersApiRoute}/ours/${id}`);
   }
 }

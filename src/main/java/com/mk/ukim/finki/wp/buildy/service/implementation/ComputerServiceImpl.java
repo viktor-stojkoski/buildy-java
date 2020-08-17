@@ -37,7 +37,7 @@ public class ComputerServiceImpl implements ComputerService {
 
     @Override
     public ComputerDto getOursComputerDto(Long id) {
-        if (Arrays.asList(computerRepository.ourComputerIds).contains(id)) {
+        if (!Arrays.asList(computerRepository.ourComputerIds).contains(id)) {
             throw new BuildyNotFoundException(ErrorCodes.COMPUTER_NOT_FOUND);
         }
 
