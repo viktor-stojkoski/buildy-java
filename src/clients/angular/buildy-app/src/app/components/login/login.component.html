@@ -1,20 +1,11 @@
 <mat-card>
+  <mat-card-title>
+    Log In
+  </mat-card-title>
   <mat-card-content>
 
     <div class="form">
       <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-        <h2>Log In</h2>
-        <!-- <mat-error *ngIf="loginInvalid">
-          The username and password were not recognized
-        </mat-error> -->
-
-        <!-- <mat-form-field>
-          <mat-label>Enter your name</mat-label>
-          <input matInput type="text" formControlName="name" />
-          <mat-error *ngIf="formGroup.get('name').hasError('required')">
-            Name field is required
-          </mat-error>
-        </mat-form-field> -->
 
         <mat-form-field>
           <mat-label>Enter your email</mat-label>

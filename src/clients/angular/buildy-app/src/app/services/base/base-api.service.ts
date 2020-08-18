@@ -9,7 +9,7 @@ import { environment  } from 'src/environments/environment';
 export class BaseApiService {
 
   public httpHeaders: HttpHeaders = new HttpHeaders({
-    // 'Content-Type': 'application/json',
+    'Content-Type': 'application/json',
     Accept: 'application/json'
   });
 

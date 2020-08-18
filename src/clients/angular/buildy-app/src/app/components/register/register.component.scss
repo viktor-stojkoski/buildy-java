@@ -1,0 +1,25 @@
+.full-width {
+  width: 100%;
+}
+
+.form {
+  width: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
+
+mat-card {
+  max-width: 800px;
+  height: 700px;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.radio-margin {
+  margin-left: 15px;
+}

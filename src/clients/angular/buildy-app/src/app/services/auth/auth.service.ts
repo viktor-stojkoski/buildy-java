@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LoginRequest } from 'src/app/models/requests/user.requests';
+import { LoginRequest, RegisterRequest } from 'src/app/models/requests/user.requests';
 
 import { BaseApiService } from '../base/base-api.service';
-import { IRoleDto } from 'src/app/models/user.interfaces';
+import { IRoleDto, IUserDto } from 'src/app/models/user.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +22,13 @@ export class AuthService {
     private baseApiService: BaseApiService
   ) { }
 
-  public login(loginRequest: LoginRequest): Observable<IRoleDto> {
+  public login(loginRequest: LoginRequest): Observable<IUserDto> {
     const headers = new HttpHeaders({
       Authorization: this.createBasicAuthToken(loginRequest),
       'Content-Type': 'application/json',
       Accept: 'application/json'
     });
-    return this.baseApiService.post<IRoleDto>(`${this.authRoute}/login`, loginRequest, headers)
+    return this.baseApiService.post<IUserDto>(`${this.authRoute}/login`, loginRequest, headers)
       .pipe(
         map(user => {
           const token = window.btoa(loginRequest.username + ':' + loginRequest.password);
@@ -38,6 +38,10 @@ export class AuthService {
           return user;
         }
       ));
+  }
+
+  public register(registerRequest: RegisterRequest): Observable<IUserDto> {
+    return this.baseApiService.post<IUserDto>(`${this.authRoute}/register`, registerRequest);
   }
 
   public logout(): void {

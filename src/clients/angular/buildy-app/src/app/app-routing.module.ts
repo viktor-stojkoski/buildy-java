@@ -15,6 +15,7 @@ import { StorageAddComponent } from './components/build-computer/storage/storage
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuard } from './guards/auth/auth.guard';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,7 +40,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: '**', component: HomeComponent }
 ];
 

@@ -14,6 +14,10 @@ import java.util.List;
 @Table(name = "`user`")
 public class User extends BaseEntity implements UserDetails {
 
+    private String firstName;
+
+    private String lastName;
+
     private String emailAddress;
 
     private String username;
@@ -33,7 +37,9 @@ public class User extends BaseEntity implements UserDetails {
 
     private boolean isEnabled;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
     private List<Role> roles;
 
     @ManyToMany(mappedBy = "users")
@@ -84,6 +90,22 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setUsername(String username) {

@@ -6,11 +6,15 @@ import java.time.LocalDateTime;
 
 public class RegisterRequest {
 
+    public String firstName;
+
+    public String lastName;
+
     public String emailAddress;
 
     public String username;
 
-    public String passwordHash;
+    public String password;
 
     public Gender gender;
 
