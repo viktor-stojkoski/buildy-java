@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { Gender } from 'src/app/models/enums/gender.enum';
 import { RegisterRequest } from 'src/app/models/requests/user.requests';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   public ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -30,6 +32,8 @@ export class RegisterComponent implements OnInit {
       gender: ['', Validators.required],
       dateOfBirth: ['', Validators.required]
     });
+
+    console.log(this.formGroup.get('password'));
   }
 
   public register(): void {
@@ -47,8 +51,8 @@ export class RegisterComponent implements OnInit {
       this.authService
         .register(registerRequest)
         .subscribe({
-          next: result => {
-            console.log(result);
+          next: () => {
+            this.router.navigate(['login']);
           },
           error: error => console.error(error)
         });
