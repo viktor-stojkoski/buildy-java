@@ -65,7 +65,6 @@ public class UserServiceImpl implements UserService {
         user.setGender(registerRequest.gender);
 
         Role role = roleRepository.findUserRole();
-        role.setName("USER");
         user.setRoles(Collections.singletonList(role));
 
         User savedUser = userRepository.save(user);
