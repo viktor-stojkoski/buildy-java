@@ -95,6 +95,10 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
   }
 
   public openSaveBuildDialog(): void {
+    if (this.getCurrentUser() === null) {
+      this.router.navigate(['login']);
+      return;
+    }
     const dialogRef = this.dialog.open(SaveBuildDialogComponent, {
       width: '250px',
       data: { computerName: '' }
