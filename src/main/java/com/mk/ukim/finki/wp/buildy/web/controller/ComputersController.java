@@ -2,6 +2,7 @@ package com.mk.ukim.finki.wp.buildy.web.controller;
 
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerComponentNameDto;
 import com.mk.ukim.finki.wp.buildy.model.dto.ComputerDto;
+import com.mk.ukim.finki.wp.buildy.model.request.computer.SaveComputerRequest;
 import com.mk.ukim.finki.wp.buildy.service.ComputerService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,5 +27,10 @@ public class ComputersController {
     @GetMapping("ours/{id}")
     public ComputerDto getOursComputer(@PathVariable Long id) {
         return computerService.getOursComputerDto(id);
+    }
+
+    @PostMapping
+    public ComputerDto saveComputerToUser(@RequestBody SaveComputerRequest saveComputerRequest) {
+        return computerService.saveComputerToUser(saveComputerRequest);
     }
 }

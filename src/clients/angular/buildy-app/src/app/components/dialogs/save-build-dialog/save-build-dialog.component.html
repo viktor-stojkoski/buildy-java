@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Computer name</h1>
+<div mat-dialog-content>
+  <p>What should be your computer name ?</p>
+  <mat-form-field>
+    <mat-label>Computer name</mat-label>
+    <input matInput [(ngModel)]="data.computerName">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.computerName" cdkFocusInitial>Ok</button>
+</div>

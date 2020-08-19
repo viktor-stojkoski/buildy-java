@@ -58,6 +58,7 @@ export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
     const pcCase = this.cases.find(r => r.uid === partUid);
 
     const part: IPart = {
+      uid: pcCase.uid,
       part: ComputerComponentName.Case.longName,
       selectedPart: pcCase.name,
       price: pcCase.price

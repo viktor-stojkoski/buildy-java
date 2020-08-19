@@ -72,6 +72,12 @@ export class AuthService {
     return `Basic ${user}`;
   }
 
+  public getCurrentUser(): IUserDto {
+    return JSON.parse(sessionStorage.getItem(this.CURRENT_USER)) !== null ?
+             JSON.parse(sessionStorage.getItem(this.CURRENT_USER)) :
+             null;
+  }
+
   private createBasicAuthToken(userRequest: LoginRequest): string {
     const authToken = `Basic ${btoa(`${userRequest.username}:${userRequest.password}`)}`;
 

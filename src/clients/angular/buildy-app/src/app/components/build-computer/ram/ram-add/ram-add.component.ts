@@ -58,6 +58,7 @@ export class RamAddComponent extends DestroyBaseComponent implements OnInit {
     const ram = this.ramMemories.find(r => r.uid === partUid);
 
     const part: IPart = {
+      uid: ram.uid,
       part: ComputerComponentName.RAM.longName,
       selectedPart: ram.name,
       price: ram.price

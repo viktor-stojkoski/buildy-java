@@ -58,6 +58,7 @@ export class StorageAddComponent extends DestroyBaseComponent implements OnInit 
     const storage = this.storages.find(r => r.uid === partUid);
 
     const part: IPart = {
+      uid: storage.uid,
       part: ComputerComponentName.Storage.longName,
       selectedPart: storage .name,
       price: storage .price

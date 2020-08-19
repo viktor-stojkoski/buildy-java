@@ -17,6 +17,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +41,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
+import { SaveBuildDialogComponent } from './components/dialogs/save-build-dialog/save-build-dialog.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import { RegisterComponent } from './components/register/register.component';
     StorageAddComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    SaveBuildDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,8 @@ import { RegisterComponent } from './components/register/register.component';
     MatSortModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   providers: [
     {

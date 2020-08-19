@@ -58,6 +58,7 @@ export class MotherboardAddComponent extends DestroyBaseComponent implements OnI
     const motherboard = this.motherboards.find(r => r.uid === partUid);
 
     const part: IPart = {
+      uid: motherboard.uid,
       part: ComputerComponentName.Motherboard.longName,
       selectedPart: motherboard.name,
       price: motherboard.price

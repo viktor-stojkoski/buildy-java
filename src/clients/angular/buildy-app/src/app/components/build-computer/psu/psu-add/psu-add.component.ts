@@ -58,6 +58,7 @@ export class PsuAddComponent extends DestroyBaseComponent implements OnInit {
     const psu = this.psus.find(r => r.uid === partUid);
 
     const part: IPart = {
+      uid: psu.uid,
       part: ComputerComponentName.PSU.longName,
       selectedPart: psu.name,
       price: psu.price

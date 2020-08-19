@@ -55,12 +55,13 @@ export class CoolingAddComponent extends DestroyBaseComponent implements OnInit 
   }
 
   public addToMyComputer(partUid: string): void {
-    const coolings = this.coolings.find(r => r.uid === partUid);
+    const cooling = this.coolings.find(r => r.uid === partUid);
 
     const part: IPart = {
+      uid: cooling.uid,
       part: ComputerComponentName.Cooling.longName,
-      selectedPart: coolings.name,
-      price: coolings.price
+      selectedPart: cooling.name,
+      price: cooling.price
     };
     sessionStorage.setItem(ComputerComponentName.Cooling.shortName, JSON.stringify(part));
 

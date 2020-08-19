@@ -58,6 +58,7 @@ export class CpuAddComponent extends DestroyBaseComponent implements OnInit {
     const cpu = this.cpus.find(c => c.uid === partUid);
 
     const part: IPart = {
+      uid: cpu.uid,
       part: ComputerComponentName.CPU.longName,
       selectedPart: cpu.name,
       price: cpu.price

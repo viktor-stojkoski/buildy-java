@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IComputerComponentNameDto, IComputerDto } from 'src/app/models/computer.interfaces';
 
 import { BaseApiService } from '../base/base-api.service';
+import { IUserDto } from 'src/app/models/user.interfaces';
+import { SaveComputerRequest } from 'src/app/models/requests/computer.requests';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +21,9 @@ export class ComputerService {
 
   public getOursComputer(id: number): Observable<IComputerDto> {
     return this.baseApiService.get<IComputerDto>(`${this.computersApiRoute}/ours/${id}`);
+  }
+
+  public saveComputer(saveComputerRequest: SaveComputerRequest): Observable<IComputerDto> {
+    return this.baseApiService.post<IComputerDto>(`${this.computersApiRoute}`, saveComputerRequest);
   }
 }

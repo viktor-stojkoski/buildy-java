@@ -58,6 +58,7 @@ export class GpuAddComponent extends DestroyBaseComponent implements OnInit {
     const gpu = this.gpus.find(g => g.uid === partUid);
 
     const part: IPart = {
+      uid: gpu.uid,
       part: ComputerComponentName.GPU.longName,
       selectedPart: gpu.name,
       price: gpu.price
