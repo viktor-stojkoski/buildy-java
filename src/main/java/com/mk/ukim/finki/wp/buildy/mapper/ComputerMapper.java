@@ -6,7 +6,17 @@ import com.mk.ukim.finki.wp.buildy.model.dto.ComputerDto;
 import com.mk.ukim.finki.wp.buildy.model.entity.Computer;
 import com.mk.ukim.finki.wp.buildy.model.enumeration.ComputerComponentName;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public final class ComputerMapper {
+
+    public static List<ComputerDto> toComputerDtos(List<Computer> computer) {
+        return computer
+                .stream()
+                .map(ComputerMapper::toComputerDto)
+                .collect(Collectors.toList());
+    }
 
     public static ComputerComponentNameDto toComputerComponentNameDto(ComputerComponentName computerComponent) {
         ComputerComponentNameDto computerComponentNameDto = new ComputerComponentNameDto();
@@ -19,6 +29,9 @@ public final class ComputerMapper {
 
     public static ComputerDto toComputerDto(Computer computer) {
         ComputerDto computerDto = new ComputerDto();
+
+        computerDto.setName(computer.getName());
+        computerDto.setUid(computer.getUid());
 
         ComputerComponentDto cpu = new ComputerComponentDto();
         cpu.setUid(computer.getCpu().getUid().toString());

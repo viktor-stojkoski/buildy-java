@@ -19,6 +19,7 @@
     <div fxShow="true" fxHide.lt-md>
       <a mat-button *ngIf="!isAuthenticated" [routerLink]="'/register'" routerLinkActive="mat-accent"> Register </a>
       <a mat-button *ngIf="!isAuthenticated" [routerLink]="'/login'" routerLinkActive="mat-accent"> Log in </a>
+      <a mat-button *ngIf="isAuthenticated" [routerLink]="'/my-profile'"> Hello {{ currentUser.username }} </a>
       <a mat-button *ngIf="isAuthenticated" (click)="logout()"> Log out </a>
     </div>
   </mat-toolbar-row>

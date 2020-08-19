@@ -18,6 +18,8 @@ export interface IComputerComponentDto {
 }
 
 export interface IComputerDto {
+  name: string;
+  uid: string;
   cpu: IComputerComponentDto;
   gpu: IComputerComponentDto;
   ram: IComputerComponentDto;

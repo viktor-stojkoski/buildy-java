@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { IUserDto } from 'src/app/models/user.interfaces';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   public isAuthenticated: boolean;
+  public currentUser: IUserDto;
 
   constructor(private authService: AuthService) { }
 
@@ -19,6 +21,9 @@ export class NavbarComponent implements OnInit {
     .subscribe({
       next: result => {
         this.isAuthenticated = result;
+        if (this.isAuthenticated) {
+          this.currentUser = this.authService.getCurrentUser();
+        }
       },
       error: error => console.error(error)
     });

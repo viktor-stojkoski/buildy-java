@@ -26,4 +26,8 @@ export class ComputerService {
   public saveComputer(saveComputerRequest: SaveComputerRequest): Observable<IComputerDto> {
     return this.baseApiService.post<IComputerDto>(`${this.computersApiRoute}`, saveComputerRequest);
   }
+
+  public getComputersForUser(userUid: string): Observable<IComputerDto[]> {
+    return this.baseApiService.get<IComputerDto[]>(`${this.computersApiRoute}/${userUid}`);
+  }
 }

@@ -7,6 +7,7 @@ import com.mk.ukim.finki.wp.buildy.service.ComputerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("api/computers")
@@ -27,6 +28,11 @@ public class ComputersController {
     @GetMapping("ours/{id}")
     public ComputerDto getOursComputer(@PathVariable Long id) {
         return computerService.getOursComputerDto(id);
+    }
+
+    @GetMapping("{userUid}")
+    public List<ComputerDto> getComputersForUser(@PathVariable UUID userUid) {
+        return computerService.getComputersForUser(userUid);
     }
 
     @PostMapping

@@ -42,6 +42,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
 import { RegisterComponent } from './components/register/register.component';
 import { SaveBuildDialogComponent } from './components/dialogs/save-build-dialog/save-build-dialog.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SaveBuildDialogComponent } from './components/dialogs/save-build-dialog
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    SaveBuildDialogComponent
+    SaveBuildDialogComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

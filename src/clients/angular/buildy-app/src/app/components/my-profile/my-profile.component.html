@@ -1,0 +1,22 @@
+<div class="profile">
+  <mat-card *ngFor="let computer of computers" class="mat-elevation-z8 pc-card">
+    <mat-card-title>
+      {{ computer.name }}
+    </mat-card-title>
+    <mat-card-content>
+      <li>CPU: {{ computer.cpu.name }}</li>
+      <li>GPU: {{ computer.gpu.name }}</li>
+      <li>RAM: {{ computer.ram.name }}</li>
+      <li>PSU: {{ computer.psu.name }}</li>
+      <li>Storage: {{ computer.storage.name }}</li>
+      <li>Cooling: {{ computer.cooling.name }}</li>
+      <li>Case: {{ computer.pcCase.name }}</li>
+      <li>Motherboard: {{ computer.motherboard.name }}</li>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button mat-raised-button color="warn" (click)="deletePc(computer.uid)">
+        Delete PC
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -14,10 +14,8 @@ import com.mk.ukim.finki.wp.buildy.persistance.*;
 import com.mk.ukim.finki.wp.buildy.service.ComputerService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ComputerServiceImpl implements ComputerService {
@@ -140,5 +138,18 @@ public class ComputerServiceImpl implements ComputerService {
         computerRepository.save(computer);
 
         return ComputerMapper.toComputerDto(computer);
+    }
+
+    @Override
+    public List<ComputerDto> getComputersForUser(UUID userUid) {
+        User user = userRepository.findUserByUid(userUid)
+                .orElseThrow(() -> new BuildyNotFoundException(ErrorCodes.USER_NOT_FOUND));
+
+        List<Computer> computers = computerRepository.findAll()
+                .stream()
+                .filter(c -> c.getUsers().contains(user))
+                .collect(Collectors.toList());
+
+        return ComputerMapper.toComputerDtos(computers);
     }
 }
