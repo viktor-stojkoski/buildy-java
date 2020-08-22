@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { LoginRequest } from 'src/app/models/requests/user.requests';
 import { AuthService } from 'src/app/services/auth/auth.service';

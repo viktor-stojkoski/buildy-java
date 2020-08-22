@@ -1,21 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { IPart } from 'src/app/models/computer.interfaces';
-import { ComputerComponentName } from 'src/app/models/computer.models';
-import { IRamDto } from 'src/app/models/ram.interfaces';
-import { RamService } from 'src/app/services/ram/ram.service';
+
+import { DestroyBaseComponent } from '../../../../helpers/components/destroy-base.component';
+import { IPart } from '../../../../models/computer.interfaces';
+import { ComputerComponentName } from '../../../../models/computer.models';
+import { IRamDto } from '../../../../models/ram.interfaces';
+import { RamService } from '../../../../services/ram/ram.service';
 
 @Component({
   selector: 'app-ram-add',
   templateUrl: './ram-add.component.html',
   styleUrls: ['./ram-add.component.scss']
 })
-export class RamAddComponent extends DestroyBaseComponent implements OnInit {
+export class RamAddComponent extends DestroyBaseComponent implements OnInit, OnDestroy {
   public displayedColumns: string[] = ['image', 'name', 'manufacturer', 'ramMemoryType', 'size', 'timing', 'frequency', 'price', 'actions'];
   public dataSource: MatTableDataSource<IRamDto>;
   public ramMemories: IRamDto[];
@@ -30,7 +31,7 @@ export class RamAddComponent extends DestroyBaseComponent implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.ramService
       .getRamMemories()
       .pipe(takeUntil(this.destroyed))
@@ -66,5 +67,9 @@ export class RamAddComponent extends DestroyBaseComponent implements OnInit {
     sessionStorage.setItem(ComputerComponentName.RAM.shortName, JSON.stringify(part));
 
     this.router.navigate(['build']);
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

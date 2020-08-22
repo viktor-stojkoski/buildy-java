@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+
 import { DestroyBaseComponent } from '../../../../helpers/components/destroy-base.component';
 import { ICaseDto } from '../../../../models/case.interfaces';
 import { IPart } from '../../../../models/computer.interfaces';
@@ -15,7 +16,7 @@ import { CaseService } from '../../../../services/case/case.service';
   templateUrl: './case-add.component.html',
   styleUrls: ['./case-add.component.scss']
 })
-export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
+export class CaseAddComponent extends DestroyBaseComponent implements OnInit, OnDestroy {
   public displayedColumns = ['image', 'name', 'manufacturer', 'dimensions', 'fansSupported', 'motherboardType', 'price', 'actions'];
   public dataSource: MatTableDataSource<ICaseDto>;
   public cases: ICaseDto[];
@@ -30,7 +31,7 @@ export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.caseService
       .getCases()
       .pipe(takeUntil(this.destroyed))
@@ -66,5 +67,9 @@ export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
     sessionStorage.setItem(ComputerComponentName.Case.shortName, JSON.stringify(part));
 
     this.router.navigate(['build']);
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

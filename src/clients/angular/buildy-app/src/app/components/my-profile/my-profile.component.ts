@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IComputerDto } from 'src/app/models/computer.interfaces';
-import { ComputerService } from 'src/app/services/computer/computer.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { IUserDto } from 'src/app/models/user.interfaces';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { ComputerService } from 'src/app/services/computer/computer.service';
 
 @Component({
   selector: 'app-my-profile',

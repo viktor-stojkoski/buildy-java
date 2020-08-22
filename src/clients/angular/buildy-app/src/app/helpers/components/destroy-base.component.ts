@@ -6,7 +6,7 @@ export abstract class DestroyBaseComponent implements OnDestroy {
 
   constructor() {}
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
   }

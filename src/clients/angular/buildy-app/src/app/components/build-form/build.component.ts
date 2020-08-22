@@ -1,29 +1,29 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, iif, of } from 'rxjs';
-import { switchMap, takeUntil, tap, mergeMap } from 'rxjs/operators';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { ComputerMapper } from 'src/app/helpers/mappers/computer.mapper';
-import { IComputerComponentNameDto, IComputerDto, IPart } from 'src/app/models/computer.interfaces';
-import { ComputerService } from 'src/app/services/computer/computer.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
+
+import { DestroyBaseComponent } from '../../helpers/components/destroy-base.component';
+import { ComputerMapper } from '../../helpers/mappers/computer.mapper';
+import { IComputerComponentNameDto, IComputerDto, IPart } from '../../models/computer.interfaces';
+import { ComputerComponentName } from '../../models/computer.models';
+import { ComputerComponentRequest, SaveComputerRequest } from '../../models/requests/computer.requests';
+import { IUserDto } from '../../models/user.interfaces';
+import { AuthService } from '../../services/auth/auth.service';
+import { ComputerService } from '../../services/computer/computer.service';
 import { SaveBuildDialogComponent } from '../dialogs/save-build-dialog/save-build-dialog.component';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { IUserDto } from 'src/app/models/user.interfaces';
-import { SaveComputerRequest, ComputerComponentRequest } from 'src/app/models/requests/computer.requests';
-import { ComputerComponentName } from 'src/app/models/computer.models';
 
 @Component({
   selector: 'app-build',
   templateUrl: './build.component.html',
   styleUrls: ['./build.component.scss']
 })
-export class BuildComponent extends DestroyBaseComponent implements OnInit {
+export class BuildComponent extends DestroyBaseComponent implements OnInit, OnDestroy {
   private computerId: number;
-  private computerName: string;
 
   public computerComponentNames: IComputerComponentNameDto[];
   public components: IPart[];
@@ -151,6 +151,10 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit {
         },
         error: error => console.error(error)
       });
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 
   public resetBuild(): void {

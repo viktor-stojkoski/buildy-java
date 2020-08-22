@@ -1,21 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { IPart } from 'src/app/models/computer.interfaces';
-import { ComputerComponentName } from 'src/app/models/computer.models';
-import { ICpuDto } from 'src/app/models/cpu.interfaces';
-import { CpuService } from 'src/app/services/cpu/cpu.service';
+
+import { DestroyBaseComponent } from '../../../../helpers/components/destroy-base.component';
+import { IPart } from '../../../../models/computer.interfaces';
+import { ComputerComponentName } from '../../../../models/computer.models';
+import { ICpuDto } from '../../../../models/cpu.interfaces';
+import { CpuService } from '../../../../services/cpu/cpu.service';
 
 @Component({
   selector: 'app-cpu-add',
   templateUrl: './cpu-add.component.html',
   styleUrls: ['./cpu-add.component.scss']
 })
-export class CpuAddComponent extends DestroyBaseComponent implements OnInit {
+export class CpuAddComponent extends DestroyBaseComponent implements OnInit, OnDestroy {
   public displayedColumns: string[] = ['image', 'name', 'manufacturer', 'socket', 'cores', 'threads', 'frequency', 'cache', 'cooling', 'price', 'actions'];
   public dataSource: MatTableDataSource<ICpuDto>;
   public cpus: ICpuDto[];
@@ -30,7 +31,7 @@ export class CpuAddComponent extends DestroyBaseComponent implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.cpuService
       .getCpus()
       .pipe(takeUntil(this.destroyed))
@@ -66,5 +67,9 @@ export class CpuAddComponent extends DestroyBaseComponent implements OnInit {
     sessionStorage.setItem(ComputerComponentName.CPU.shortName, JSON.stringify(part));
 
     this.router.navigate(['build']);
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

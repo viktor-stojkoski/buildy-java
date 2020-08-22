@@ -1,21 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { IPart } from 'src/app/models/computer.interfaces';
-import { ComputerComponentName } from 'src/app/models/computer.models';
-import { IMotherboardDto } from 'src/app/models/motherboard.interfaces';
-import { MotherboardService } from 'src/app/services/motherboard/motherboard.service';
+
+import { DestroyBaseComponent } from '../../../../helpers/components/destroy-base.component';
+import { IPart } from '../../../../models/computer.interfaces';
+import { ComputerComponentName } from '../../../../models/computer.models';
+import { IMotherboardDto } from '../../../../models/motherboard.interfaces';
+import { MotherboardService } from '../../../../services/motherboard/motherboard.service';
 
 @Component({
   selector: 'app-motherboard-add',
   templateUrl: './motherboard-add.component.html',
   styleUrls: ['./motherboard-add.component.scss']
 })
-export class MotherboardAddComponent extends DestroyBaseComponent implements OnInit {
+export class MotherboardAddComponent extends DestroyBaseComponent implements OnInit, OnDestroy {
   public displayedColumns = ['image', 'name', 'manufacturer', 'motherboardType', 'socket', 'memorySupported', 'dimmSlots', 'price', 'actions'];
   public dataSource: MatTableDataSource<IMotherboardDto>;
   public motherboards: IMotherboardDto[];
@@ -30,7 +31,7 @@ export class MotherboardAddComponent extends DestroyBaseComponent implements OnI
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.motherboardService
       .getMotherboards()
       .pipe(takeUntil(this.destroyed))
@@ -66,5 +67,9 @@ export class MotherboardAddComponent extends DestroyBaseComponent implements OnI
     sessionStorage.setItem(ComputerComponentName.Motherboard.shortName, JSON.stringify(part));
 
     this.router.navigate(['build']);
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

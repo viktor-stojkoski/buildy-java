@@ -1,12 +1,12 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoginRequest, RegisterRequest } from 'src/app/models/requests/user.requests';
+import { IUserDto } from 'src/app/models/user.interfaces';
 
 import { BaseApiService } from '../base/base-api.service';
-import { IRoleDto, IUserDto } from 'src/app/models/user.interfaces';
 
 @Injectable({
   providedIn: 'root'

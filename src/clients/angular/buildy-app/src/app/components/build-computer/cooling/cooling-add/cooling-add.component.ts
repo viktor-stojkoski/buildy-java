@@ -1,21 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { IPart } from 'src/app/models/computer.interfaces';
-import { ComputerComponentName } from 'src/app/models/computer.models';
-import { ICoolingDto } from 'src/app/models/cooling.interfaces';
-import { CoolingService } from 'src/app/services/cooling/cooling.service';
+
+import { DestroyBaseComponent } from '../../../../helpers/components/destroy-base.component';
+import { IPart } from '../../../../models/computer.interfaces';
+import { ComputerComponentName } from '../../../../models/computer.models';
+import { ICoolingDto } from '../../../../models/cooling.interfaces';
+import { CoolingService } from '../../../../services/cooling/cooling.service';
 
 @Component({
   selector: 'app-cooling-add',
   templateUrl: './cooling-add.component.html',
   styleUrls: ['./cooling-add.component.scss']
 })
-export class CoolingAddComponent extends DestroyBaseComponent implements OnInit {
+export class CoolingAddComponent extends DestroyBaseComponent implements OnInit, OnDestroy {
   public displayedColumns: string[] = ['image', 'name', 'manufacturer', 'size', 'speed', 'coolingType', 'rgb', 'price', 'actions'];
   public dataSource: MatTableDataSource<ICoolingDto>;
   public coolings: ICoolingDto[];
@@ -30,7 +31,7 @@ export class CoolingAddComponent extends DestroyBaseComponent implements OnInit 
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.coolingService
       .getCoolings()
       .pipe(takeUntil(this.destroyed))
@@ -66,5 +67,9 @@ export class CoolingAddComponent extends DestroyBaseComponent implements OnInit 
     sessionStorage.setItem(ComputerComponentName.Cooling.shortName, JSON.stringify(part));
 
     this.router.navigate(['build']);
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { Gender } from 'src/app/models/enums/gender.enum';
 import { RegisterRequest } from 'src/app/models/requests/user.requests';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends DestroyBaseComponent implements OnInit, OnDestroy {
 
   public genders = Object.keys(Gender);
 
@@ -20,7 +21,9 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router) {
+    super();
+  }
 
   public ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -57,5 +60,9 @@ export class RegisterComponent implements OnInit {
           error: error => console.error(error)
         });
     }
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }
