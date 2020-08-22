@@ -153,14 +153,15 @@ export class BuildComponent extends DestroyBaseComponent implements OnInit, OnDe
       });
   }
 
-  public ngOnDestroy(): void {
-    super.ngOnDestroy();
-  }
-
   public resetBuild(): void {
     ComputerMapper.resetBuild(this.computerComponentNames);
     this.drawTable(null);
   }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
+  }
+
 
   private getTotalPrice(): number {
     return this.dataSource?.data ?

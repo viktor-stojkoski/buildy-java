@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { takeUntil } from 'rxjs/operators';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { Gender } from 'src/app/models/enums/gender.enum';
 import { RegisterRequest } from 'src/app/models/requests/user.requests';
@@ -50,9 +51,10 @@ export class RegisterComponent extends DestroyBaseComponent implements OnInit, O
         gender: this.formGroup.controls.gender.value,
         dateOfBirth: moment.utc(this.formGroup.controls.dateOfBirth.value).toDate()
       };
-      console.log(registerRequest);
+
       this.authService
         .register(registerRequest)
+        .pipe(takeUntil(this.destroyed))
         .subscribe({
           next: () => {
             this.router.navigate(['login']);

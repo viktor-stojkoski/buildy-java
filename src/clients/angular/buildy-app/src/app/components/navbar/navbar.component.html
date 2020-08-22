@@ -30,12 +30,14 @@
 
   <mat-sidenav #sidenav>
     <mat-nav-list>
-      <a [routerLink]="" mat-list-item (click)="sidenav.toggle()"> What is Buildy? </a>
-      <a [routerLink]="'/build'" mat-list-item (click)="sidenav.toggle()"> Build a computer </a>
+      <a [routerLink]="''" mat-list-item (click)="sidenav.toggle()"> What is Buildy? </a>
+      <a [routerLink]="'/build'" *ngIf="isAuthenticated" mat-list-item (click)="sidenav.toggle()"> Build a computer </a>
       <a [routerLink]="'/about'" mat-list-item (click)="sidenav.toggle()"> About </a>
       <a [routerLink]="'/contact'" mat-list-item (click)="sidenav.toggle()"> Contact </a>
-      <a [routerLink]="'/register'" mat-list-item (click)="sidenav.toggle()"> Register </a>
-      <a [routerLink]="'/login'" mat-list-item (click)="sidenav.toggle()"> Login </a>
+      <a [routerLink]="'/register'" *ngIf="!isAuthenticated" mat-list-item (click)="sidenav.toggle()"> Register </a>
+      <a [routerLink]="'/login'" *ngIf="!isAuthenticated" mat-list-item (click)="sidenav.toggle()"> Login </a>
+      <a [routerLink]="'/my-profile'" *ngIf="isAuthenticated" mat-list-item (click)="sidenav.toggle()"> Hello {{ currentUser.username }} </a>
+      <a (click)="logout()" *ngIf="isAuthenticated" mat-list-item (click)="sidenav.toggle()"> Log out </a>
     </mat-nav-list>
   </mat-sidenav>
 

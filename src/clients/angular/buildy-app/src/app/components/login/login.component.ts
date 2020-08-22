@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
 import { LoginRequest } from 'src/app/models/requests/user.requests';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -41,6 +42,7 @@ export class LoginComponent extends DestroyBaseComponent implements OnInit, OnDe
 
       this.authService
         .login(loginRequest)
+        .pipe(takeUntil(this.destroyed))
         .subscribe({
           next: () => {
             this.router.navigate(['']);
