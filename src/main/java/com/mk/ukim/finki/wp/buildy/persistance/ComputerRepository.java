@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ComputerRepository extends JpaRepository<Computer, Long> {
+
+    Long[] ourComputerIds = new Long[] {1L, 2L, 3L, 4L};
 }

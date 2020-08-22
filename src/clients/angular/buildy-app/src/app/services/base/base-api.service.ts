@@ -19,8 +19,11 @@ export class BaseApiService {
     return this.http.get<T>(`${environment.baseApiUrl}${url}`, { headers: this.httpHeaders, params });
   }
 
-  public post<T>(url: string, data: object = { }): Observable<T> {
-    return this.http.post<T>(`${environment.baseApiUrl}${url}`, JSON.stringify(data), { headers: this.httpHeaders });
+  public post<T>(url: string, data: object = { }, httpHeaders?: HttpHeaders): Observable<T> {
+    return this.http.post<T>
+      (`${environment.baseApiUrl}${url}`,
+        JSON.stringify(data),
+        { headers: httpHeaders ? httpHeaders : this.httpHeaders });
   }
 
   public put<T>(url: string, data: object = { }): Observable<T> {

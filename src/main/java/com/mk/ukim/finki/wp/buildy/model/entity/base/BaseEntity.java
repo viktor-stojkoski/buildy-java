@@ -20,6 +20,7 @@ public abstract class BaseEntity {
 
     @NotNull
     @Version
+    @Column(columnDefinition = "BIGINT DEFAULT 1")
     protected Long version;
 
     @Nullable

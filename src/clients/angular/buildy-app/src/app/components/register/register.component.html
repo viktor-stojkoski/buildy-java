@@ -1,0 +1,89 @@
+<mat-card class="my-card">
+  <mat-card-title>
+    Registration
+  </mat-card-title>
+  <mat-card-content>
+
+    <div class="form">
+      <form [formGroup]="formGroup">
+
+        <mat-form-field class="full-width">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="First name" type="text" />
+          <mat-error *ngIf="formGroup.get('firstName').hasError('required')">
+            First name field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Last Name" type="text" />
+          <mat-error *ngIf="formGroup.get('lastName').hasError('required')">
+            Last name field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" placeholder="Username" />
+          <mat-error *ngIf="formGroup.get('username').hasError('required')">
+            Username field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email" type="email" />
+          <mat-error *ngIf="formGroup.get('email').hasError('required')">
+            Email field field is required
+          </mat-error>
+          <mat-error *ngIf="formGroup.get('email').hasError('email')">
+            Enter valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" placeholder="Password" type="password" />
+          <mat-error *ngIf="formGroup.get('password').hasError('required')">
+            Password field is required
+          </mat-error>
+          <mat-error *ngIf="formGroup.get('password').hasError('minlength')">
+            Enter a password with minimum length of 6
+          </mat-error>
+        </mat-form-field>
+
+        <mat-label>Gender:</mat-label>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button
+            *ngFor="let gender of genders"
+            class="radio-margin"
+            [value]="gender">
+            {{ gender }}
+          </mat-radio-button>
+          <mat-error *ngIf="formGroup.get('gender').hasError('required') && formGroup.get('gender').touched">
+            Gender field is required
+          </mat-error>
+        </mat-radio-group>
+
+        <mat-form-field class="full-width">
+          <input matInput formControlName="dateOfBirth" [matDatepicker]="picker" placeholder="Choose a date" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="formGroup.get('dateOfBirth').hasError('required')">
+            Date of birth field is required
+          </mat-error>
+        </mat-form-field>
+
+      </form>
+    </div>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button (click)="register()" color="primary" class="full-width">
+      REGISTER
+    </button>
+  </mat-card-actions>
+
+</mat-card>

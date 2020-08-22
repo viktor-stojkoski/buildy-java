@@ -1,5 +1,8 @@
 <div class="container">
-  <div class="mat-elevation-z8">
+  <mat-card class="mat-elevation-z8">
+    <mat-card-title>
+      Build a computer
+    </mat-card-title>
     <table mat-table [dataSource]="dataSource" matSort>
 
       <!-- Part Column -->
@@ -41,7 +44,25 @@
             Remove part
           </button>
         </td>
-        <td mat-footer-cell *matFooterCellDef></td>
+        <td mat-footer-cell *matFooterCellDef>
+          <button
+            mat-button
+            mat-raised-button
+            color="primary"
+            class="save-button"
+            (click)="openSaveBuildDialog()"
+            [disabled]="isSaveButtonDisabled">
+            Save build
+          </button>
+          <button
+            class="remove-button"
+            mat-button
+            mat-raised-button
+            color="warn"
+            (click)="resetBuild()">
+            Reset build
+          </button>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -49,6 +70,6 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>
+  </mat-card>
 
-  </div>
 </div>

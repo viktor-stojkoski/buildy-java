@@ -21,6 +21,10 @@ export namespace ComputerMapper {
     return Array.of(cpu, gpu, ram, pcCase, cooling, motherboard, psu, storage);
   }
 
+  export function resetBuild(componentNames: IComputerComponentNameDto[]): void {
+    componentNames.forEach(cn => sessionStorage.removeItem(cn.shortName));
+  }
+
   function getFromSessionOrSetEmpty(componentNames: IComputerComponentNameDto[]): IPart[] {
     const cpu = fillPartFromStorage(componentNames, ComputerComponentName.CPU);
     const gpu = fillPartFromStorage(componentNames, ComputerComponentName.GPU);
@@ -36,6 +40,7 @@ export namespace ComputerMapper {
 
   function emptyPart(part: IComputerComponentNameDto): IPart {
     return {
+      uid: '',
       part: part.longName,
       selectedPart: '',
       price: 0
@@ -45,6 +50,7 @@ export namespace ComputerMapper {
   function fillPartFromComputerAndSetStorage(componentNames: IComputerComponentNameDto[], part: IComputerComponentDto): IPart {
     const partName = componentNames.find(x => x.shortName === part.computerComponentName);
     const computerPart: IPart = {
+      uid: part.uid,
       part: partName.longName,
       selectedPart: part.name,
       price: part.price

@@ -3,9 +3,8 @@ package com.mk.ukim.finki.wp.buildy.model.entity;
 import com.mk.ukim.finki.wp.buildy.model.entity.base.BaseEntity;
 import com.mk.ukim.finki.wp.buildy.model.entity.components.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Computer extends BaseEntity {
@@ -52,7 +51,13 @@ public class Computer extends BaseEntity {
     @JoinColumn(name = "storage_fk")
     private Storage storage;
 
-    // TODO: Add users
+    @ManyToMany
+    @JoinTable(
+            name = "user_computer",
+            joinColumns = @JoinColumn(name = "computer_fk"),
+            inverseJoinColumns = @JoinColumn(name = "user_fk")
+    )
+    private List<User> users;
 
     public String getName() {
         return name;
@@ -156,5 +161,13 @@ public class Computer extends BaseEntity {
 
     public void setStorage(Storage storage) {
         this.storage = storage;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

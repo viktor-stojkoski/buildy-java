@@ -1,21 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { DestroyBaseComponent } from 'src/app/helpers/components/destroy-base.component';
-import { ICaseDto } from 'src/app/models/case.interfaces';
-import { IPart } from 'src/app/models/computer.interfaces';
-import { ComputerComponentName } from 'src/app/models/computer.models';
-import { CaseService } from 'src/app/services/case/case.service';
+
+import { DestroyBaseComponent } from '../../../../helpers/components/destroy-base.component';
+import { ICaseDto } from '../../../../models/case.interfaces';
+import { IPart } from '../../../../models/computer.interfaces';
+import { ComputerComponentName } from '../../../../models/computer.models';
+import { CaseService } from '../../../../services/case/case.service';
 
 @Component({
   selector: 'app-case-add',
   templateUrl: './case-add.component.html',
   styleUrls: ['./case-add.component.scss']
 })
-export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
+export class CaseAddComponent extends DestroyBaseComponent implements OnInit, OnDestroy {
   public displayedColumns = ['image', 'name', 'manufacturer', 'dimensions', 'fansSupported', 'motherboardType', 'price', 'actions'];
   public dataSource: MatTableDataSource<ICaseDto>;
   public cases: ICaseDto[];
@@ -30,7 +31,7 @@ export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.caseService
       .getCases()
       .pipe(takeUntil(this.destroyed))
@@ -58,6 +59,7 @@ export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
     const pcCase = this.cases.find(r => r.uid === partUid);
 
     const part: IPart = {
+      uid: pcCase.uid,
       part: ComputerComponentName.Case.longName,
       selectedPart: pcCase.name,
       price: pcCase.price
@@ -65,5 +67,9 @@ export class CaseAddComponent extends DestroyBaseComponent implements OnInit {
     sessionStorage.setItem(ComputerComponentName.Case.shortName, JSON.stringify(part));
 
     this.router.navigate(['build']);
+  }
+
+  public ngOnDestroy(): void {
+    super.ngOnDestroy();
   }
 }

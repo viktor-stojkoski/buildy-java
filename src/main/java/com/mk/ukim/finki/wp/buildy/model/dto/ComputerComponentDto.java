@@ -6,6 +6,8 @@ import lombok.Data;
 @Data
 public class ComputerComponentDto {
 
+    public String uid;
+
     public ComputerComponentName computerComponentName;
 
     public String name;
