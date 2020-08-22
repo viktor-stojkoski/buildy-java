@@ -134,6 +134,7 @@ public class ComputerServiceImpl implements ComputerService {
         computer.setRamAmount(ram.getSize());
         computer.setStorageAmount(storage.getCapacity());
         computer.setUsers(Collections.singletonList(user));
+        computer.setUid(UUID.randomUUID());
 
         computerRepository.save(computer);
 
